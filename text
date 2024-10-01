@@ -190,3 +190,7 @@ aside {
     display: grid;
     grid-template-columns: 1fr;
 }
+
+<a href="index.html">
+        <img src="Images/Icon Button.png" alt="Home Icon" class="home" style="width: 40px; height: auto; padding: 5px;">
+      </a>

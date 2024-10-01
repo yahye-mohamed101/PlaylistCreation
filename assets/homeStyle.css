@@ -25,11 +25,6 @@
 
 }
 
-.home {
-    margin: 0;
-    padding: 5px;
-}
-
 .logo {
     align-self: center;
     margin-left: 50px;
@@ -85,6 +80,13 @@ label {
     color: rgb(0, 0, 0);
     font-size: 1.1em;
     margin: 5px 0 5px 0;
-    ;
   }
+
+  #logout {
+    background-color: #ec5d1f;
+    color: white;
+    border-radius: 5px;
+}
+  
+
 
