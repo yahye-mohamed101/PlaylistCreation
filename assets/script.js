@@ -81,7 +81,13 @@ function storeTune(tune) {
 
 function addTuneToList(tune) {
     const li = document.createElement('li');
-    li.textContent = `${tune.artistName} - ${tune.songTitle} (${tune.urlAudio})`;
+    const tuneLink = document.createElement('a');
+    
+    tuneLink.href = tune.urlAudio;
+    tuneLink.target = "_blank";
+    tuneLink.textContent = `${tune.artistName} - ${tune.songTitle}`;
+
+    li.appendChild(tuneLink);
     recentlyAdded.appendChild(li);
 }
 
