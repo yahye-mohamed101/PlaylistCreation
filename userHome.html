@@ -16,11 +16,11 @@
   <header>
     <h5 class="username">Username</h5>
     <div class="mode-toggle">
-        <label class="switch toggle">
-            <input type="checkbox" class="checkbox, toggleButton">
-            <span class="slider round"></span>
-            <span id="modeLabel">Light Mode</span>
-        </label>
+      <label class="switch toggle">
+        <input type="checkbox">
+        <span class="slider round"></span>
+        <span id="modeLabel">Light Mode</span>
+      </label>
     </div>
   </header>
 
@@ -28,28 +28,18 @@
     <div class="grid-container">
       <aside class="grid-item1">
         <div class="item1-flex">
-          <button id="logout">Logout<img src="Images/Icon Button (1).png" style="width: 23px; transform: rotate(180deg); margin-left:5px; margin-bottom: 2px;"></button>
+          <a href="index.html">
+            <img src="Images/Icon Button.png" alt="Home Icon" class="home"
+              style="width: 40px; height: auto; padding: 5px;">
+          </a>
           <img class="logo" src="Images/TuneForge Logo.png" alt="TuneForge Logo">
         </div>
         <label for="new-playlist" class="create-newPL">Create a New Playlist</label>
         <input type="text" placeholder="New Playlist" id="newPlaylist">
         <button type="submit" class="submit-newPL" id="createPlaylist">Create!</button>
         <div class="accordion" id="accordionExample">
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
-                aria-expanded="true" aria-controls="collapseOne">
-                Playlists
-              </button>
-            </h2>
-            <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul id="playlistAccordian">
-                  <!-- Append List Items Here -->
-                </ul>
-              </div>
-            </div>
-          </div>
+        <!-- Accordions Go Here -->  
+        </div>
       </aside>
       <section class="grid-item2">
         <div class="hero-flex">
@@ -62,12 +52,11 @@
             <input type="text" id="artistName" name="artistName"><br>
             <label for="songTitle">Song Title:</label><br>
             <input type="text" id="songTitle" name="songTitle"><br>
-            <!--<label for="audioFile">Audio File</label><br>
-            <input type="file" id="audioFile" name="audioFile"><br> -->
+            <label for="audioFile">Audio File</label><br>
+            <input type="file" id="audioFile" name="audioFile"><br>
             <label for="urlAudio">Song Link:</label><br>
             <input type="url" id="urlAudio" name="urlAudio" placeholder="https://example.com">
-            <br>
-            <button type="submit" id="forge"><img src="Images/Button.png"></button>
+            <button type="submit" id="forge">Submit</button>
           </form>
           <h3>Recently Added</h3>
           <ul id="recentlyAdded">
