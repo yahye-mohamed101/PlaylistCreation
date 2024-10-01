@@ -114,3 +114,7 @@ button.btn.btn-primary
   .slider.round:before {
     border-radius: 50%;
   }
+
+  label {
+    color: rgb(241, 241, 241);
+  }
