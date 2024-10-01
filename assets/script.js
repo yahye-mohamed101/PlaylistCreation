@@ -17,7 +17,7 @@ let redirectURL = ('index.html');
 
 // EVENT LISTENERS
 
-submitButton.addEventListener('click')
+submitButton.addEventListener('click', storeSubmission)
 
 // VARIABLES AS FUNCITONS
 
@@ -32,10 +32,10 @@ function storeSubmission(event) {
     event.preventDefault();
 
     if (!username || !password) {
-        document.querySelector(HEY YO THIS NEEDS TO SELECT SOMETHING).innerText = "Please enter a valid email and password.";
+        document.querySelector(HEY-YO-THIS-NEEDS-TO-SELECT-SOMETHING).innerText = "Please enter a valid email and password.";
         return;
     } else {
         localStorage.setItem('user', JSON.stringify(user));
-        redirectPage('userHome.html')
     };
+    redirectPage('userHome.html');
 }
