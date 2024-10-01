@@ -36,6 +36,6 @@ function storeSubmission(event) {
         return;
     } else {
         localStorage.setItem('user', JSON.stringify(user));
+        redirectPage('userHome.html');
     };
-    redirectPage('userHome.html');
 }
