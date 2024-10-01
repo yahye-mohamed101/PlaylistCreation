@@ -74,6 +74,10 @@
     margin: 10px 10px;
 }
 
+ .checkbox:hover {
+    cursor: pointer;
+}
+
 
 h2 {
     text-align: center;
