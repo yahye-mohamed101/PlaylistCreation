@@ -12,6 +12,7 @@ const createButton = document.querySelector('#createPlaylist');
 const playlistAccordian = document.querySelector('#playlistAccordian');
 const body = document.body;
 const toggleButton = document.querySelector('.toggleButton');
+const accordionContainer = document.querySelector('#accordionExample');
 
 const existingUser = JSON.parse(localStorage.getItem('user')) || [];
 
@@ -50,6 +51,44 @@ form?.addEventListener('submit', function (event) {
 });
 
 createButton?.addEventListener('click', function () {
+    const playlistName = newPlaylistInput.value;
+    if (playlistName === '') return;
+    const newAccordionId = `playlist-${playlistName}`;
+
+    const accordionItem = document.createElement('div');
+    accordionItem.classList.add('accordion-item');
+
+    const h2 = document.createElement('h2');
+    h2.classList.add('accordion-header');
+
+    const button = document.createElement('button');
+    button.classList.add('accordion-button', 'collapsed');
+    button.setAttribute('data-bs-toggle', 'collapse');
+    button.setAttribute('data-bs-target', `#${newAccordionId}`);
+    button.textContent = playlistName;
+
+    h2.appendChild(button);
+    const someDiv = document.createElement('div');
+    someDiv.classList.add('accordion-collapse', 'collapse');
+    someDiv.id = newAccordionId;
+    someDiv.setAttribute('data-bs-parent', '#accordionExample');
+
+    const someOtherDiv = document.createElement('div');
+    someOtherDiv.classList.add('accordion-body');
+
+    const ul = document.createElement('ul');
+
+    someOtherDiv.appendChild(ul);
+    someDiv.appendChild(someOtherDiv);
+    accordionItem.appendChild(someDiv);
+    accordionItem.appendChild(h2);
+    accordionContainer.appendChild(accordionItem);
+
+    newPlaylistInput.value = '';
+});
+
+/*
+createButton?.addEventListener('click', function () {
     const playlistName = newPlaylistInput.value.trim();
     const h4 = document.createElement('h4');
     const li = document.createElement('li');
@@ -60,6 +99,7 @@ createButton?.addEventListener('click', function () {
     playlistAccordian.appendChild(li);
     newPlaylistInput.value = '';
 });
+*/
 
 // VARIABLES AS FUNCITONS
 
