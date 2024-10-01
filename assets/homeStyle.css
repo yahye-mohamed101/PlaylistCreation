@@ -8,6 +8,8 @@
 .grid-item1{
     background-color: rgb(213 213 213);
     padding: 20px;
+    border: solid 3px #ec5d1f;
+    border-radius: 5px;
 }
 
  .grid-item2 {
@@ -17,6 +19,8 @@
     justify-content: center;
     align-items: center;
     flex-direction: column; 
+    border: solid 3px #ec5d1f;
+    border-radius: 5px;
 }
 
 .item1-flex {
@@ -92,5 +96,23 @@ label {
     border-radius: 5px;
 }
   
+#forge {
+    border: none;
+    width: 0;
+    height: 0;
+    background-color: rgb(213 213 213);
+    padding: 22px;
+}
 
+h3 {
+    padding: 22px;
+}
 
+input {
+    width: 14em;
+}
+
+.accordion-item {
+    margin-top: 25px;
+    --bs-accordion-active-bg: #ff4c00de
+}
