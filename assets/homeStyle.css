@@ -63,6 +63,18 @@
     align-self: center;
 }
 
+.username {
+    text-align: right;
+    /* padding: 10px 10px; */
+    margin: 10px 10px;
+}
+
+.mode-toggle{
+    text-align: right;
+    margin: 10px 10px;
+}
+
+
 h2 {
     text-align: center;
 
@@ -75,3 +87,4 @@ label {
     margin: 5px 0 5px 0;
     ;
   }
+
