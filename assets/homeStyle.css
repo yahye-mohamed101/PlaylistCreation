@@ -5,9 +5,18 @@
     padding: 20px;
 }
 
-.grid-item1, .grid-item2 {
-    background-color: grey;
+.grid-item1{
+    background-color: rgb(213 213 213);
     padding: 20px;
+}
+
+ .grid-item2 {
+    background-color: rgb(213 213 213);
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; 
 }
 
 .item1-flex {
@@ -24,4 +33,45 @@
 .logo {
     align-self: center;
     margin-left: 50px;
+    padding-bottom: 25px;
 }
+
+.create-newPL {
+    margin-left: 45px;
+    padding: 20px;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-size: 1.5em;
+}
+
+#new-playlist {
+    margin-left: 45px;
+}
+
+.submit-newPL {
+    background-color: #ec5d1f;
+    color: white;
+    border-radius: 5px;
+}
+
+.hero-flex {
+    display: flex;
+    flex-direction: column;
+}
+
+.hero {
+    align-self: center;
+}
+
+h2 {
+    text-align: center;
+
+}
+
+
+label {
+    color: rgb(0, 0, 0);
+    font-size: 1.1em;
+    margin: 5px 0 5px 0;
+    ;
+  }
