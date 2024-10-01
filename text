@@ -194,3 +194,6 @@ aside {
 <a href="index.html">
         <img src="Images/Icon Button.png" alt="Home Icon" class="home" style="width: 40px; height: auto; padding: 5px;">
       </a>
+
+      <button id="logout">Logout<img src="Images/Icon Button (1).png" style="width: 23px; transform: rotate(180deg); margin-left:5px; margin-bottom: 2px;"></button>
+      <img class="logo" src="Images/TuneForge Logo.png" alt="TuneForge Logo">
