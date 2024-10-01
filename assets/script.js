@@ -117,7 +117,7 @@ function storeSubmission(event) {
     const password = passwordInput.value;
 
     if (!username || !password) {
-        //.innerText = "Please enter a valid email and password."; WE MIGHT NEED THIS IF WE CHANGE THE LOGIN FROM AN EMAIL TO A USERNAME.
+        //.innerText = "Please enter a valid something and password."; WE MIGHT NEED THIS IF WE CHANGE THE LOGIN FROM AN EMAIL TO A USERNAME.
         return;
     } else {
         const user = {
@@ -151,7 +151,14 @@ function loadStoredTunes() {
     tunes.forEach(tune => addTuneToList(tune));
 }
 
-//TOGGLE BUTTON FUNCTION
+// IFS
+
+if(existingUser.username) {
+    const loggedIn = document.querySelector('.username');
+    loggedIn.textContent = `${existingUser.username}`;
+}
+
+//T OGGLE BUTTON FUNCTION
 
 let isDarkMode = false;
 
