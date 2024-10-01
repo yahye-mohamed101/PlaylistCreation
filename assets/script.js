@@ -1,11 +1,13 @@
 // CONSTS
 
+
 const usernameInput = document.querySelector('#exampleInputEmail1');
 const passwordInput = document.querySelector('#exampleInputPassword1');
 const submitButton = document.querySelector('#loginForm');
 const logoutButton = document.querySelector('#logout');
 const form = document.querySelector('#newTuneForm');
 const recentlyAdded = document.querySelector('#recentlyAdded');
+
 
 const existingUser = JSON.parse(localStorage.getItem('user')) || [];
 
