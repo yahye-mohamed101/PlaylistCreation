@@ -16,11 +16,11 @@
   <header>
     <h5 class="username">Username</h5>
     <div class="mode-toggle">
-      <label class="switch toggle">
-        <input type="checkbox">
-        <span class="slider round"></span>
-        <span id="modeLabel">Light Mode</span>
-      </label>
+        <label class="switch toggle">
+            <input type="checkbox" class="checkbox, toggleButton">
+            <span class="slider round"></span>
+            <span id="modeLabel">Light Mode</span>
+        </label>
     </div>
   </header>
 
@@ -65,11 +65,12 @@
             <input type="text" id="artistName" name="artistName"><br>
             <label for="songTitle">Song Title:</label><br>
             <input type="text" id="songTitle" name="songTitle"><br>
-            <label for="audioFile">Audio File</label><br>
-            <input type="file" id="audioFile" name="audioFile"><br>
+            <!--<label for="audioFile">Audio File</label><br>
+            <input type="file" id="audioFile" name="audioFile"><br> -->
             <label for="urlAudio">Song Link:</label><br>
             <input type="url" id="urlAudio" name="urlAudio" placeholder="https://example.com">
-            <button type="submit" id="forge">Submit</button>
+            <br>
+            <button type="submit" id="forge"><img src="Images/Button.png"></button>
           </form>
           <h3>Recently Added</h3>
           <ul id="recentlyAdded">

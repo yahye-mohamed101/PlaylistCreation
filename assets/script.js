@@ -10,6 +10,8 @@ const recentlyAdded = document.querySelector('#recentlyAdded');
 const newPlaylistInput = document.querySelector('#newPlaylist');
 const createButton = document.querySelector('#createPlaylist');
 const playlistAccordian = document.querySelector('#playlistAccordian');
+const body = document.body;
+const toggleButton = document.querySelector('.toggleButton');
 
 const existingUser = JSON.parse(localStorage.getItem('user')) || [];
 
@@ -108,3 +110,30 @@ function addTuneToList(tune) {
 function loadStoredTunes() {
     tunes.forEach(tune => addTuneToList(tune));
 }
+
+//TOGGLE BUTTON FUNCTION
+
+let isDarkMode = false;
+
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'dark') {
+    isDarkMode = true;
+    body.setAttribute('data-theme', 'dark');
+    toggleButton.textContent = 'Switch to Light Mode';
+
+}
+
+function toggleTheme() {
+    isDarkMode = !isDarkMode;
+
+    if (isDarkMode) {
+        body.setAttribute('data-theme', 'dark');
+        toggleButton.textContent = 'Switch to Light Mode';
+        localStorage.setItem('theme', 'dark');
+    } else {
+        body.removeAttribute('data-theme');
+        toggleButton.textContent = 'Switch to Dark Mode';
+        localStorage.setItem('theme', 'light');
+    }
+}
+toggleButton.addEventListener('click', toggleTheme);

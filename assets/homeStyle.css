@@ -1,3 +1,25 @@
+:root {
+    --background-color: white;
+    --text-color: black;
+}
+
+[data-theme="dark"] {
+    --background-color: black;
+    --text-color: white;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.mode-toggle {
+    text-align: center;
+    margin-top: 50px;
+}
+
+
 .grid-container {
     display: grid;
     grid-template-columns: 1fr 3fr;
@@ -8,6 +30,8 @@
 .grid-item1{
     background-color: rgb(213 213 213);
     padding: 20px;
+    border: solid 3px #ec5d1f;
+    border-radius: 5px;
 }
 
  .grid-item2 {
@@ -17,17 +41,14 @@
     justify-content: center;
     align-items: center;
     flex-direction: column; 
+    border: solid 3px #ec5d1f;
+    border-radius: 5px;
 }
 
 .item1-flex {
     display: flex;
     align-items: flex-start;
 
-}
-
-.home {
-    margin: 0;
-    padding: 5px;
 }
 
 .logo {
@@ -63,6 +84,90 @@
     align-self: center;
 }
 
+.username {
+    text-align: right;
+    /* padding: 10px 10px; */
+    margin: 10px 10px;
+}
+
+.mode-toggle{
+    text-align: right;
+    margin: 10px 10px;
+}
+
+ .checkbox:hover {
+    cursor: pointer;
+}
+
+span .modeLabel {
+    margin-bottom: 10px;
+}
+
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+
+
 h2 {
     text-align: center;
 
@@ -73,5 +178,31 @@ label {
     color: rgb(0, 0, 0);
     font-size: 1.1em;
     margin: 5px 0 5px 0;
-    ;
   }
+
+  #logout {
+    background-color: #ec5d1f;
+    color: white;
+    border-radius: 5px;
+}
+  
+#forge {
+    border: none;
+    width: 0;
+    height: 0;
+    background-color: rgb(213 213 213);
+    padding: 22px;
+}
+
+h3 {
+    padding: 22px;
+}
+
+input {
+    width: 14em;
+}
+
+.accordion-item {
+    margin-top: 25px;
+    --bs-accordion-active-bg: #ff4c00de
+}
