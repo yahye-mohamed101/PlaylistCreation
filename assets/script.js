@@ -1,6 +1,5 @@
 // CONSTS
 
-
 const usernameInput = document.querySelector('#exampleInputEmail1');
 const passwordInput = document.querySelector('#exampleInputPassword1');
 const submitButton = document.querySelector('#loginForm');
