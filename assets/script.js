@@ -6,6 +6,34 @@ const submitButton = document.querySelector('#loginForm');
 const logoutButton = document.querySelector('#logout');
 const form = document.querySelector('#newTuneForm');
 const recentlyAdded = document.querySelector('#recentlyAdded');
+
+const toggleButton = document.querySelector('#toggleButton');
+const body = document.body;
+
+//TOGGLE BUTTON FUNCTION
+
+//const savedTheme = localStorage.getItem('theme');
+//if (savedTheme === 'dark') {
+    //body.setAttribute('data-theme', 'dark');
+    //toggleButton.checked = true; // Set slider to checked
+//}
+
+// Function to toggle between light and dark mode
+function toggleTheme() {
+    if (body.getAttribute('data-theme') === 'dark') {
+        body.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+    } else {
+        body.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+    }
+}
+
+// Add event listener to the toggle button
+toggleButton.addEventListener('change', toggleTheme);
+
+
+
 const newPlaylistInput = document.querySelector('#newPlaylist');
 const createButton = document.querySelector('#createPlaylist');
 const playlistAccordian = document.querySelector('#playlistAccordian');
@@ -151,7 +179,8 @@ function loadStoredTunes() {
     tunes.forEach(tune => addTuneToList(tune));
 }
 
-//TOGGLE BUTTON FUNCTION
+toggleTheme();
+/* TOGGLE BUTTON FUNCTION
 
 let isDarkMode = false;
 
@@ -178,3 +207,4 @@ function toggleTheme() {
     }
 }
 toggleButton.addEventListener('click', toggleTheme);
+toggleTheme(); */

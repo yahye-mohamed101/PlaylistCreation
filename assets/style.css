@@ -42,7 +42,7 @@ button.btn.btn-primary
     border: none;
 }
 
-.switch {
+  .switch {
     position: absolute;
     top: 34px;
     right: 76px;
