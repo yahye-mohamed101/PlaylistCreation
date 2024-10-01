@@ -14,7 +14,12 @@
 
 <body>
   <header>
-    <h5 class="username">Username</h5>
+    <img src="Images/musical-note.png" style="width: 120px; rotate: 22deg; position: relative; top: 22px; left: 22px;">
+    <img src="Images/musical-note (1).png" style="width: 50px; rotate:325deg; position: relative; top: 55px; left: 20px;">
+    <img src="Images/musical-note.png" style="width: 50px; rotate:32deg; position: relative; top: 45px; left: 28px;">
+    <img src="Images/musical-note.png" style="width: 80px; rotate:325deg; position: relative; top: 55px; left: 20px;">
+    <img src="Images/musical-note (1).png" style="width: 50px; rotate:6deg; position: relative; top: 55px; left: 20px;">
+    <img src="Images/musical-note.png" style="width: 50px;">
 
     <div class="container">
         <label class="switch">
@@ -29,9 +34,10 @@
     <div class="grid-container">
       <aside class="grid-item1">
         <div class="item1-flex">
-          <button id="logout"><img src="Images/Icon Button (1).png" style="width: 25px; padding-right: 5px;">Logout</button>
-          
           <img class="logo" src="Images/TuneForge Logo.png" alt="TuneForge Logo">
+          <h5 class="username">Username</h5>
+          <button id="logout"><img src="Images/Icon Button (1).png" style="width: 25px; padding-right: 5px; margin-bottom: 3px">Logout</button>
+          
         </div>
         <label for="new-playlist" class="create-newPL">Create a New Playlist</label>
         <input type="text" placeholder="New Playlist" id="newPlaylist">
@@ -58,7 +64,7 @@
             <br>
             <button type="submit" id="forge"><img src="Images/Button.png"></button>
           </form>
-          <h3>Recently Added</h3>
+          <h3>Recently Forged</h3>
           <ul id="recentlyAdded">
             <!-- List items will be appended here. -->
           </ul>

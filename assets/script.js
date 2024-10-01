@@ -7,8 +7,8 @@ const logoutButton = document.querySelector('#logout');
 const form = document.querySelector('#newTuneForm');
 const recentlyAdded = document.querySelector('#recentlyAdded');
 
-const toggleButton = document.querySelector('#toggleButton');
-const body = document.body;
+//const toggleButton = document.querySelector('#toggleButton');
+//const body = document.body;
 
 //TOGGLE BUTTON FUNCTION
 
@@ -19,18 +19,18 @@ const body = document.body;
 //}
 
 // Function to toggle between light and dark mode
-function toggleTheme() {
-    if (body.getAttribute('data-theme') === 'dark') {
-        body.removeAttribute('data-theme');
-        localStorage.setItem('theme', 'light');
-    } else {
-        body.setAttribute('data-theme', 'dark');
-        localStorage.setItem('theme', 'dark');
-    }
-}
+//function toggleTheme() {
+    //if (body.getAttribute('data-theme') === 'dark') {
+      //  body.removeAttribute('data-theme');
+       // localStorage.setItem('theme', 'light');
+   // } else {
+  //      body.setAttribute('data-theme', 'dark');
+   //     localStorage.setItem('theme', 'dark');
+  //  }
+//}
 
 // Add event listener to the toggle button
-toggleButton.addEventListener('change', toggleTheme);
+//toggleButton.addEventListener('change', toggleTheme);
 
 
 
