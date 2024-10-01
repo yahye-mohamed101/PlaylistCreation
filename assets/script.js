@@ -61,7 +61,7 @@ function storeSubmission(event) {
     const password = passwordInput.value;
 
     if (!username || !password) {
-        //.innerText = "Please enter a valid email and password."; // Use a valid selector
+        //.innerText = "Please enter a valid email and password."; Use a valid selector
         return;
     } else {
         const user = {
@@ -81,7 +81,9 @@ function storeTune(tune) {
 
 function addTuneToList(tune) {
     const li = document.createElement('li');
-    li.textContent = `${tune.artistName} - ${tune.songTitle} (${tune.urlAudio})`;
+    const a = document. createElement('a');
+    li.textContent = `${tune.artistName} - ${tune.songTitle}`;
+    a.href = `${${tune.urlAudio}}`
     recentlyAdded.appendChild(li);
 }
 
