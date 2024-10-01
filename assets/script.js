@@ -3,6 +3,7 @@
 const username = document.querySelector('#exampleInputEmail1');
 const password = document.querySelector('#exampleInputPassword1');
 const submitButton = document.querySelector('#submitButton');
+const logout = document.getElementById('logout');
 
 const existingUser = JSON.parse(localStorage.getItem('user')) || [];
 
