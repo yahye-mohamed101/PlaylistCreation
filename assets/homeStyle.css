@@ -206,15 +206,3 @@ input {
     margin-top: 25px;
     --bs-accordion-active-bg: #ff4c00de
 }
-
-body[data-theme='dark'] {
-    background-color: black;
-}
-
-h5[data-theme='dark'] {
-    color: white;
-}
-
-h5[data-theme='light'] {
-    color: black;
-}
