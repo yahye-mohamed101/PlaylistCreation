@@ -61,7 +61,7 @@ function storeSubmission(event) {
     const password = passwordInput.value;
 
     if (!username || !password) {
-        //.innerText = "Please enter a valid email and password."; // Use a valid selector
+        //.innerText = "Please enter a valid email and password."; Use a valid selector
         return;
     } else {
         const user = {
