@@ -7,9 +7,11 @@ const submitButton = document.querySelector('#loginForm');
 const logoutButton = document.querySelector('#logout');
 const form = document.querySelector('#newTuneForm');
 const recentlyAdded = document.querySelector('#recentlyAdded');
-const toggleButton = document.querySelector('.toggleButton');
+const newPlaylistInput = document.querySelector('#newPlaylist');
+const createButton = document.querySelector('#createPlaylist');
+const playlistAccordian = document.querySelector('#playlistAccordian');
 const body = document.body;
-
+const toggleButton = document.querySelector('.toggleButton');
 
 const existingUser = JSON.parse(localStorage.getItem('user')) || [];
 
@@ -23,35 +25,47 @@ let redirectURL = '';
 
 submitButton?.addEventListener('submit', storeSubmission);
 
-logoutButton?.addEventListener('click', function() {
+logoutButton?.addEventListener('click', function () {
     redirectPage('index.html');
 });
 
 form?.addEventListener('submit', function (event) {
     event.preventDefault();
-  
+
     const artistName = document.querySelector('#artistName').value;
     const songTitle = document.querySelector('#songTitle').value;
     const urlAudio = document.querySelector('#urlAudio').value;
-  
+
     const newTune = {
-      artistName,
-      songTitle,
-      urlAudio
+        artistName,
+        songTitle,
+        urlAudio
     };
-  
+
     storeTune(newTune);
-  
+
     addTuneToList(newTune);
-  
+
     form.reset();
-  });
+});
+
+createButton?.addEventListener('click', function () {
+    const playlistName = newPlaylistInput.value.trim();
+    const h4 = document.createElement('h4');
+    const li = document.createElement('li');
+    if (playlistName === '') return;
+    li.classList.add('playlist-item');
+    h4.textContent = playlistName;
+    li.appendChild(h4);
+    playlistAccordian.appendChild(li);
+    newPlaylistInput.value = '';
+});
 
 // VARIABLES AS FUNCITONS
 
 const redirectPage = function (url) {
-  redirectURL = url;
-  location.assign(url);
+    redirectURL = url;
+    location.assign(url);
 };
 
 // FUNCTIONS
@@ -63,7 +77,7 @@ function storeSubmission(event) {
     const password = passwordInput.value;
 
     if (!username || !password) {
-        //.innerText = "Please enter a valid email and password."; Use a valid selector
+        //.innerText = "Please enter a valid email and password."; WE MIGHT NEED THIS IF WE CHANGE THE LOGIN FROM AN EMAIL TO A USERNAME.
         return;
     } else {
         const user = {
@@ -83,13 +97,13 @@ function storeTune(tune) {
 
 function addTuneToList(tune) {
     const li = document.createElement('li');
-    const tuneLink = document.createElement('a');
-    
-    tuneLink.href = tune.urlAudio;
-    tuneLink.target = "_blank";
-    tuneLink.textContent = `${tune.artistName} - ${tune.songTitle}`;
+    const a = document.createElement('a');
 
-    li.appendChild(tuneLink);
+    a.href = tune.urlAudio;
+    a.target = "_blank";
+    a.textContent = `${tune.artistName} - ${tune.songTitle}`;
+
+    li.appendChild(a);
     recentlyAdded.appendChild(li);
 }
 
