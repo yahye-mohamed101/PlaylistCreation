@@ -17,7 +17,7 @@ let redirectURL = ('index.html');
 
 // EVENT LISTENERS
 
-submitButton.addEventListener('click')
+submitButton.addEventListener('click', storeSubmission)
 
 // VARIABLES AS FUNCITONS
 
@@ -36,6 +36,6 @@ function storeSubmission(event) {
         return;
     } else {
         localStorage.setItem('user', JSON.stringify(user));
-        redirectPage('userHome.html')
+        redirectPage('userHome.html');
     };
 }
