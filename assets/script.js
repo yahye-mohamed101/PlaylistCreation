@@ -32,7 +32,7 @@ function storeSubmission(event) {
     event.preventDefault();
 
     if (!username || !password) {
-        document.querySelector(HEY YO THIS NEEDS TO SELECT SOMETHING).innerText = "Please enter a valid email and password.";
+        document.querySelector(HEYYOTHISNEEDSTOSELECTSOMETHING).innerText = "Please enter a valid email and password.";
         return;
     } else {
         localStorage.setItem('user', JSON.stringify(user));

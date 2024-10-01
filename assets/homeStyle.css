@@ -110,11 +110,11 @@ button.btn.btn-primary {
 }
 
 input:checked + .slider {
-    background-color: #2196F3;
+    background-color: var(--purple);
 }
 
 input:focus + .slider {
-    box-shadow: 0 0 1px #2196F3;
+    box-shadow: 0 0 1px var(--purple);
 }
 
 input:checked + .slider:before {
@@ -156,4 +156,9 @@ input:checked + .slider:before {
 
 input {
     margin-top: -30px;
+}
+
+#modeLabel {
+    position: absolute;
+    right: -90px;
 }
