@@ -6,34 +6,6 @@ const submitButton = document.querySelector('#loginForm');
 const logoutButton = document.querySelector('#logout');
 const form = document.querySelector('#newTuneForm');
 const recentlyAdded = document.querySelector('#recentlyAdded');
-
-//const toggleButton = document.querySelector('#toggleButton');
-//const body = document.body;
-
-//TOGGLE BUTTON FUNCTION
-
-//const savedTheme = localStorage.getItem('theme');
-//if (savedTheme === 'dark') {
-    //body.setAttribute('data-theme', 'dark');
-    //toggleButton.checked = true; // Set slider to checked
-//}
-
-// Function to toggle between light and dark mode
-//function toggleTheme() {
-    //if (body.getAttribute('data-theme') === 'dark') {
-      //  body.removeAttribute('data-theme');
-       // localStorage.setItem('theme', 'light');
-   // } else {
-  //      body.setAttribute('data-theme', 'dark');
-   //     localStorage.setItem('theme', 'dark');
-  //  }
-//}
-
-// Add event listener to the toggle button
-//toggleButton.addEventListener('change', toggleTheme);
-
-
-
 const newPlaylistInput = document.querySelector('#newPlaylist');
 const createButton = document.querySelector('#createPlaylist');
 const playlistAccordian = document.querySelector('#playlistAccordian');
@@ -167,12 +139,13 @@ function addTuneToList(tune) {
     const li = document.createElement('li');
     const a = document.createElement('a');
     const editButton = document.createElement('button');
+    const dragButton = document.createElement('button');
 
     a.href = tune.urlAudio;
     a.target = "_blank";
     a.textContent = `${tune.artistName} - ${tune.songTitle}`;
 
-    editButton.textContent = 'Re-Forge';
+    editButton.textContent = 'Re Forge';
     editButton.classList.add('btn', 'btn-secondary', 'edit-button');
     editButton.style.margin = '10px';
 
@@ -188,37 +161,42 @@ function addTuneToList(tune) {
         editTuneForm.onsubmit = function (event) {
             event.preventDefault();
 
-             tune.artistName = document.querySelector('#editArtistName').value;
-             tune.songTitle = document.querySelector('#editSongTitle').value;
-             tune.urlAudio = document.querySelector('#editUrlAudio').value;
- 
-             a.textContent = `${tune.artistName} - ${tune.songTitle}`;
-             a.href = tune.urlAudio;
- 
-             storeTune(tune); 
- 
-             editModal.hide();
-         };
-     });
+            tune.artistName = document.querySelector('#editArtistName').value;
+            tune.songTitle = document.querySelector('#editSongTitle').value;
+            tune.urlAudio = document.querySelector('#editUrlAudio').value;
+
+            a.textContent = `${tune.artistName} - ${tune.songTitle}`;
+            a.href = tune.urlAudio;
+
+            storeTune(tune);
+
+            editModal.hide();
+        };
+    });
+
+    dragButton.textContent = 'Drag Tune';
+    dragButton.classList.add('btn', 'btn-secondary', 'dragButton');
+    dragButton.style.margin = '10px';
+
+    dragButton?.addEventListener('mousedown', function () {
+        li.draggable = true;
+        li?.addEventListener('dragstart', dragStart);
+    });
+
+    dragButton?.addEventListener('mouseup', function () {
+        li.draggable = false;
+    });
 
     li.appendChild(a);
+    li.appendChild(dragButton);
     li.appendChild(editButton);
+
     recentlyAdded.appendChild(li);
 }
 
 function loadStoredTunes() {
     tunes.forEach(tune => addTuneToList(tune));
 }
-
-
-
-
-
-
-
-
-
-
 
 // IFS
 
@@ -227,7 +205,8 @@ if(existingUser.username) {
     loggedIn.textContent = `${existingUser.username}`;
 }
 
-/* TOGGLE BUTTON FUNCTION
+/*
+TOGGLE BUTTON FUNCTION
 
 toggleTheme();
 
@@ -257,4 +236,33 @@ function toggleTheme() {
     }
 }
 toggleButton.addEventListener('click', toggleTheme);
-toggleTheme(); */
+toggleTheme();
+*/
+
+
+/*
+const toggleButton = document.querySelector('#toggleButton');
+const body = document.body;
+
+TOGGLE BUTTON FUNCTION
+
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'dark') {
+    body.setAttribute('data-theme', 'dark');
+    toggleButton.checked = true; // Set slider to checked
+}
+
+ // Function to toggle between light and dark mode
+function toggleTheme() {
+    if (body.getAttribute('data-theme') === 'dark') {
+        body.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+    } else {
+        body.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+    }
+}
+
+// Add event listener to the toggle button
+toggleButton.addEventListener('change', toggleTheme);
+*/
