@@ -10,7 +10,7 @@ const newPlaylistInput = document.querySelector('#newPlaylist');
 const createButton = document.querySelector('#createPlaylist');
 const playlistAccordian = document.querySelector('#playlistAccordian');
 const body = document.body;
-const toggleButton = document.querySelector('.toggleButton');
+const toggleButton = document.getElementById('toggleButton');
 const h5 = document.querySelector('h5');
 const accordionContainer = document.querySelector('#accordionExample');
 
@@ -205,10 +205,9 @@ if(existingUser.username) {
     loggedIn.textContent = `${existingUser.username}`;
 }
 
-/*
-TOGGLE BUTTON FUNCTION
 
-toggleTheme();
+
+//TOGGLE BUTTON FUNCTION
 
 
 let isDarkMode = false;
@@ -236,8 +235,8 @@ function toggleTheme() {
     }
 }
 toggleButton.addEventListener('click', toggleTheme);
-toggleTheme();
-*/
+toggleTheme(); 
+
 
 
 /*
