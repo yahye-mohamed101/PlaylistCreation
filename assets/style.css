@@ -126,3 +126,25 @@ button.btn.btn-primary
   body[data-theme='dark'] {
     background-color: black;
 }
+
+/* MEDIA QUERIES */
+
+@media screen and (max-width: 768px) {
+ 
+  header {
+    display: none;
+  }
+
+  body {
+     
+  }
+
+  .container {
+      padding: 10px; 
+  }
+
+  nav {
+      display: block; 
+  }
+}
+
