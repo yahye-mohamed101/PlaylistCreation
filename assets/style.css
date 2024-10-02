@@ -38,7 +38,7 @@ button.btn.btn-primary
  {
     margin-top: 30px;
     margin-left: 100px;
-    background-color: var(--orange-main);
+    background-image: linear-gradient(#f15025, #b83c07);
     border: none;
 }
 

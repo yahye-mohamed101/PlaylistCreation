@@ -85,9 +85,6 @@ input:checked + .slider:before {
  .grid-item2 {
     background-color: rgb(213 213 213 / 46%);
     padding: 20px;
-    /*display: flex;
-    align-items: center;
-    flex-direction: column; */
     border: solid 3px #ec5d1f;
     border-radius: 5px;
 }
@@ -117,7 +114,7 @@ input:checked + .slider:before {
 }
 
 .submit-newPL {
-    background-color: #ec5d1f;
+    background-image: linear-gradient(#f15025, #b83c07);
     color: white;
     border-radius: 5px;
     margin: 10px;
@@ -225,7 +222,7 @@ label {
   }
 
 #logout {
-    background-color: #ec5d1f;
+    background-image: linear-gradient(#f15025, #b83c07);
     color: white;
     border-radius: 5px;
     width: 95px;
@@ -287,4 +284,15 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.music-notes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.btn-secondary {
+    background-image: linear-gradient(#f15025, #b83c07);
 }
