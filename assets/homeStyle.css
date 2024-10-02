@@ -1,11 +1,11 @@
  :root {
-    --background-color: black;
-    --text-color: white;
+    --background-color: white;
+    --text-color: black;
 }
 
 [data-theme='dark'] {
-    --background-color: white;
-    --text-color: black;
+    --background-color: black;
+    --text-color: white;
 }
 
 body {
@@ -16,8 +16,6 @@ body {
 
 .container{
     text-align: right;
-    position: absolute;
-    top: 36px;
 }
 
 .switch {
