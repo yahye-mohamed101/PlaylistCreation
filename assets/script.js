@@ -145,7 +145,7 @@ function addTuneToList(tune) {
     a.target = "_blank";
     a.textContent = `${tune.artistName} - ${tune.songTitle}`;
 
-    editButton.textContent = 'Re Forge';
+    editButton.textContent = 'Reforge';
     editButton.classList.add('btn', 'btn-secondary', 'edit-button');
     editButton.style.margin = '10px';
 
