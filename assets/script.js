@@ -7,6 +7,7 @@ const logoutButton = document.querySelector('#logout');
 const form = document.querySelector('#newTuneForm');
 const recentlyAdded = document.querySelector('#recentlyAdded');
 
+/*
 const toggleButton = document.querySelector('#toggleButton');
 const body = document.body;
 
@@ -31,6 +32,7 @@ function toggleTheme() {
 
 // Add event listener to the toggle button
 toggleButton.addEventListener('change', toggleTheme);
+*/
 
 
 
