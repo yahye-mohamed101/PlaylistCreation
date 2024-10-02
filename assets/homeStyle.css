@@ -16,8 +16,6 @@ body {
 
 .container{
     text-align: right;
-    position: absolute;
-    top: 36px;
 }
 
 .switch {
