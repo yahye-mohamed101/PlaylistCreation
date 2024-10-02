@@ -139,12 +139,13 @@ function addTuneToList(tune) {
     const li = document.createElement('li');
     const a = document.createElement('a');
     const editButton = document.createElement('button');
+    const dragButton = document.createElement('button');
 
     a.href = tune.urlAudio;
     a.target = "_blank";
     a.textContent = `${tune.artistName} - ${tune.songTitle}`;
 
-    editButton.textContent = 'Re-Forge';
+    editButton.textContent = 'Re Forge';
     editButton.classList.add('btn', 'btn-secondary', 'edit-button');
     editButton.style.margin = '10px';
 
@@ -160,21 +161,36 @@ function addTuneToList(tune) {
         editTuneForm.onsubmit = function (event) {
             event.preventDefault();
 
-             tune.artistName = document.querySelector('#editArtistName').value;
-             tune.songTitle = document.querySelector('#editSongTitle').value;
-             tune.urlAudio = document.querySelector('#editUrlAudio').value;
- 
-             a.textContent = `${tune.artistName} - ${tune.songTitle}`;
-             a.href = tune.urlAudio;
- 
-             storeTune(tune); 
- 
-             editModal.hide();
-         };
-     });
+            tune.artistName = document.querySelector('#editArtistName').value;
+            tune.songTitle = document.querySelector('#editSongTitle').value;
+            tune.urlAudio = document.querySelector('#editUrlAudio').value;
+
+            a.textContent = `${tune.artistName} - ${tune.songTitle}`;
+            a.href = tune.urlAudio;
+
+            storeTune(tune);
+
+            editModal.hide();
+        };
+    });
+
+    dragButton.textContent = 'Drag Tune';
+    dragButton.classList.add('btn', 'btn-secondary', 'dragButton');
+    dragButton.style.margin = '10px';
+
+    dragButton?.addEventListener('mousedown', function () {
+        li.draggable = true;
+        li?.addEventListener('dragstart', dragStart);
+    });
+
+    dragButton?.addEventListener('mouseup', function () {
+        li.draggable = false;
+    });
 
     li.appendChild(a);
+    li.appendChild(dragButton);
     li.appendChild(editButton);
+
     recentlyAdded.appendChild(li);
 }
 
@@ -189,7 +205,8 @@ if(existingUser.username) {
     loggedIn.textContent = `${existingUser.username}`;
 }
 
-/* TOGGLE BUTTON FUNCTION
+/*
+TOGGLE BUTTON FUNCTION
 
 toggleTheme();
 
@@ -219,7 +236,8 @@ function toggleTheme() {
     }
 }
 toggleButton.addEventListener('click', toggleTheme);
-toggleTheme(); */
+toggleTheme();
+*/
 
 
 /*
