@@ -7,7 +7,7 @@ const logoutButton = document.querySelector('#logout');
 const form = document.querySelector('#newTuneForm');
 const recentlyAdded = document.querySelector('#recentlyAdded');
 const newPlaylistInput = document.querySelector('#newPlaylist');
-const createButton = document.querySelector('#createPlaylist');
+const createPlaylist = document.querySelector('#createPlaylist');
 const playlistAccordian = document.querySelector('#playlistAccordian');
 const body = document.body;
 const toggleButton = document.getElementById('toggleButton');
@@ -51,7 +51,7 @@ form?.addEventListener('submit', function (event) {
     form.reset();
 });
 
-createButton?.addEventListener('click', function () {
+createPlaylist?.addEventListener('click', function () {
     const playlistName = newPlaylistInput.value;
     if (playlistName === '') return;
     const newAccordionId = `playlist-${playlistName}`;
@@ -89,7 +89,7 @@ createButton?.addEventListener('click', function () {
 });
 
 /*
-createButton?.addEventListener('click', function () {
+createPlaylist?.addEventListener('click', function () {
     const playlistName = newPlaylistInput.value.trim();
     const h4 = document.createElement('h4');
     const li = document.createElement('li');
