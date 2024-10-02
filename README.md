@@ -1,3 +1,4 @@
+
 # TuneForge ![Logo](Images/Group.png)
     TuneForge is an interactive website that allows the user to create (or forge) a song based on the artist and song name snd then generate a link to the URL of the song of their choosing. The user can then create a playlist and drag their newly forged song into the playlist of their creation.
 
@@ -63,3 +64,4 @@ Please refer to the license at https://github.com/yahye-mohamed101/PlaylistCreat
 - **[Braylon Medvec]** - For their invaluable contributions do the design and wireframe concepts.
 - **[Bootstrap]** - This project uses Bootstrap, which provides excellent features for some buttons, accordions, and modal styling.
 - **Community Support** - Thanks to the MDN and W3 Schools documentation for discussions and support during the development process.
+

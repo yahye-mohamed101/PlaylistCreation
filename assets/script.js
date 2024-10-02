@@ -213,31 +213,35 @@ if(existingUser.username) {
 
 let isDarkMode = false;
 
-const savedTheme = localStorage.getItem('theme');
+const savedTheme = 'theme'
 if (savedTheme === 'dark') {
     isDarkMode = true;
     body.setAttribute('data-theme', 'dark');
-    toggleButton.textContent = 'Switch to Light Mode';
+    toggleButton.textContent = 'Switch to Light Mode'; 
 
 }
 
 function toggleTheme() {
+    
     isDarkMode = !isDarkMode;
+    
 
     if (isDarkMode) {
         h5.setAttribute('data-theme', 'dark');
         musicNotes.setAttribute('data-theme', 'dark');
         body.setAttribute('data-theme', 'dark');
         toggleButton.textContent = 'Switch to Light Mode';
-        localStorage.setItem('theme', 'dark');
     } else {
         body.removeAttribute('data-theme');
         toggleButton.textContent = 'Switch to Dark Mode';
-        localStorage.setItem('theme', 'light');
     }
+  
+
+   
 }
 toggleButton.addEventListener('click', toggleTheme);
-toggleTheme(); 
+
+
 
 
 
