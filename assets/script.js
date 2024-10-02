@@ -131,10 +131,14 @@ function storeSubmission(event) {
 }
 
 function storeTune(tune) {
-    let tunes = JSON.parse(localStorage.getItem('tunes')) || [];
+    const currentUser = JSON.parse(localStorage.getItem('user'));
+    if (!currentUser || !currentUser.username) return;
+    const userForge = `${currentUser.username}`;
+    let tunes = JSON.parse(localStorage.getItem(userForge)) || [];
     tunes.push(tune);
-    localStorage.setItem('tunes', JSON.stringify(tunes));
+    localStorage.setItem(userForge, JSON.stringify(tunes));
 }
+
 
 function addTuneToList(tune) {
     const li = document.createElement('li');
@@ -196,6 +200,10 @@ function addTuneToList(tune) {
 }
 
 function loadStoredTunes() {
+    const currentUser = JSON.parse(localStorage.getItem('user'));
+    if (!currentUser || !currentUser.username) return;
+    const userForge = `${currentUser.username}`;
+    const tunes = JSON.parse(localStorage.getItem(userForge)) || [];
     tunes.forEach(tune => addTuneToList(tune));
 }
 
@@ -206,10 +214,7 @@ if(existingUser.username) {
     loggedIn.textContent = `${existingUser.username}`;
 }
 
-
-
 //TOGGLE BUTTON FUNCTION
-
 
 let isDarkMode = false;
 
@@ -243,31 +248,6 @@ toggleButton.addEventListener('click', toggleTheme);
 
 
 
+//CALLS
 
-
-/*
-const toggleButton = document.querySelector('#toggleButton');
-const body = document.body;
-
-TOGGLE BUTTON FUNCTION
-
-const savedTheme = localStorage.getItem('theme');
-if (savedTheme === 'dark') {
-    body.setAttribute('data-theme', 'dark');
-    toggleButton.checked = true; // Set slider to checked
-}
-
- // Function to toggle between light and dark mode
-function toggleTheme() {
-    if (body.getAttribute('data-theme') === 'dark') {
-        body.removeAttribute('data-theme');
-        localStorage.setItem('theme', 'light');
-    } else {
-        body.setAttribute('data-theme', 'dark');
-        localStorage.setItem('theme', 'dark');
-    }
-}
-
-// Add event listener to the toggle button
-toggleButton.addEventListener('change', toggleTheme);
-*/
+loadStoredTunes();
