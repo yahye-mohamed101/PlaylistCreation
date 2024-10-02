@@ -7,8 +7,8 @@ const logoutButton = document.querySelector('#logout');
 const form = document.querySelector('#newTuneForm');
 const recentlyAdded = document.querySelector('#recentlyAdded');
 
-const toggleButton = document.querySelector('#toggleButton');
-const body = document.body;
+//const toggleButton = document.querySelector('#toggleButton');
+//const body = document.body;
 
 //TOGGLE BUTTON FUNCTION
 
@@ -19,18 +19,18 @@ const body = document.body;
 //}
 
 // Function to toggle between light and dark mode
-function toggleTheme() {
-    if (body.getAttribute('data-theme') === 'dark') {
-        body.removeAttribute('data-theme');
-        localStorage.setItem('theme', 'light');
-    } else {
-        body.setAttribute('data-theme', 'dark');
-        localStorage.setItem('theme', 'dark');
-    }
-}
+//function toggleTheme() {
+    //if (body.getAttribute('data-theme') === 'dark') {
+      //  body.removeAttribute('data-theme');
+       // localStorage.setItem('theme', 'light');
+   // } else {
+  //      body.setAttribute('data-theme', 'dark');
+   //     localStorage.setItem('theme', 'dark');
+  //  }
+//}
 
 // Add event listener to the toggle button
-toggleButton.addEventListener('change', toggleTheme);
+//toggleButton.addEventListener('change', toggleTheme);
 
 
 
@@ -166,18 +166,59 @@ function storeTune(tune) {
 function addTuneToList(tune) {
     const li = document.createElement('li');
     const a = document.createElement('a');
+    const editButton = document.createElement('button');
 
     a.href = tune.urlAudio;
     a.target = "_blank";
     a.textContent = `${tune.artistName} - ${tune.songTitle}`;
 
+    editButton.textContent = 'Re-Forge';
+    editButton.classList.add('btn', 'btn-secondary', 'edit-button');
+    editButton.style.margin = '10px';
+
+    editButton.addEventListener('click', function () {
+        document.querySelector('#editArtistName').value = tune.artistName;
+        document.querySelector('#editSongTitle').value = tune.songTitle;
+        document.querySelector('#editUrlAudio').value = tune.urlAudio;
+
+        const editModal = new bootstrap.Modal(document.getElementById('editModal'));
+        editModal.show();
+
+        const editTuneForm = document.getElementById('editTuneForm');
+        editTuneForm.onsubmit = function (event) {
+            event.preventDefault();
+
+             tune.artistName = document.querySelector('#editArtistName').value;
+             tune.songTitle = document.querySelector('#editSongTitle').value;
+             tune.urlAudio = document.querySelector('#editUrlAudio').value;
+ 
+             a.textContent = `${tune.artistName} - ${tune.songTitle}`;
+             a.href = tune.urlAudio;
+ 
+             storeTune(tune); 
+ 
+             editModal.hide();
+         };
+     });
+
     li.appendChild(a);
+    li.appendChild(editButton);
     recentlyAdded.appendChild(li);
 }
 
 function loadStoredTunes() {
     tunes.forEach(tune => addTuneToList(tune));
 }
+
+
+
+
+
+
+
+
+
+
 
 // IFS
 
