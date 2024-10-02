@@ -296,3 +296,54 @@ a {
 .btn-secondary {
     background-image: linear-gradient(#f15025, #b83c07);
 }
+
+/* MEDIA QUERIES */
+
+
+@media screen and (max-width: 1238px) {
+   
+    .grid-item1 {
+        max-width: 91vw;
+        height: 100%;
+    }
+    
+    .grid-item2 {
+        max-width: 91vw;
+        height: 100%;
+    }
+    
+    .hero {
+        max-width: 100%;
+    }
+    
+}
+
+@media screen and (max-width: 768px) {
+ 
+    header {
+      display: none;
+    }
+
+    .grid-container {
+        display: grid;
+        grid-template-columns: 1fr; /* 1 column */
+        grid-template-rows: repeat(2, 1fr); /* 2 rows of equal height */
+        gap: 10px; /* Optional: space between grid items */
+
+    }
+
+    .grid-item1 {
+        max-width: 91vw;
+        height: 100%;
+    }
+
+    .grid-item2 {
+        max-width: 91vw;
+        height: 100%;
+    }
+
+    .hero {
+        max-width: 100%;
+    }
+
+}
