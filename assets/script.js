@@ -13,6 +13,7 @@ const body = document.body;
 const toggleButton = document.getElementById('toggleButton');
 const h5 = document.querySelector('h5');
 const accordionContainer = document.querySelector('#accordionExample');
+const musicNotes = document.querySelector('.notes');
 
 const existingUser = JSON.parse(localStorage.getItem('user')) || [];
 
@@ -225,6 +226,7 @@ function toggleTheme() {
 
     if (isDarkMode) {
         h5.setAttribute('data-theme', 'dark');
+        musicNotes.setAttribute('data-theme', 'dark');
         body.setAttribute('data-theme', 'dark');
         toggleButton.textContent = 'Switch to Light Mode';
         localStorage.setItem('theme', 'dark');
