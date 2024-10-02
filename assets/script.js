@@ -166,18 +166,59 @@ function storeTune(tune) {
 function addTuneToList(tune) {
     const li = document.createElement('li');
     const a = document.createElement('a');
+    const editButton = document.createElement('button');
 
     a.href = tune.urlAudio;
     a.target = "_blank";
     a.textContent = `${tune.artistName} - ${tune.songTitle}`;
 
+    editButton.textContent = 'Re-Forge';
+    editButton.classList.add('btn', 'btn-secondary', 'edit-button');
+    editButton.style.margin = '10px';
+
+    editButton.addEventListener('click', function () {
+        document.querySelector('#editArtistName').value = tune.artistName;
+        document.querySelector('#editSongTitle').value = tune.songTitle;
+        document.querySelector('#editUrlAudio').value = tune.urlAudio;
+
+        const editModal = new bootstrap.Modal(document.getElementById('editModal'));
+        editModal.show();
+
+        const editTuneForm = document.getElementById('editTuneForm');
+        editTuneForm.onsubmit = function (event) {
+            event.preventDefault();
+
+             tune.artistName = document.querySelector('#editArtistName').value;
+             tune.songTitle = document.querySelector('#editSongTitle').value;
+             tune.urlAudio = document.querySelector('#editUrlAudio').value;
+ 
+             a.textContent = `${tune.artistName} - ${tune.songTitle}`;
+             a.href = tune.urlAudio;
+ 
+             storeTune(tune); 
+ 
+             editModal.hide();
+         };
+     });
+
     li.appendChild(a);
+    li.appendChild(editButton);
     recentlyAdded.appendChild(li);
 }
 
 function loadStoredTunes() {
     tunes.forEach(tune => addTuneToList(tune));
 }
+
+
+
+
+
+
+
+
+
+
 
 // IFS
 
