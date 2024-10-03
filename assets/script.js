@@ -297,6 +297,3 @@ genreButton.addEventListener('click', function() {
 });
 
 getRandomGenre();
-
-
-
