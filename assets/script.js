@@ -14,6 +14,8 @@ const toggleButton = document.getElementById('toggleButton');
 const h5 = document.querySelector('h5');
 const accordionContainer = document.querySelector('#accordionExample');
 const musicNotes = document.querySelector('.notes');
+const musicGenre = ['Rock', 'Country', 'Blues', 'Hip-hop', 'Pop', 'Jazz', 'Metal', 'Dubstep', 'Indie rock', 'Reggae'];
+const genreButton = document.querySelector("#generate-genre")
 
 const existingUser = JSON.parse(localStorage.getItem('user')) || [];
 
@@ -251,3 +253,20 @@ toggleButton.addEventListener('click', toggleTheme);
 //CALLS
 
 loadStoredTunes();
+
+
+//RANDOM GENRE GENERATOR
+function getRandomGenre() {
+
+const randomIndex = Math.floor(Math.random() *musicGenre.length);
+
+return musicGenre[randomIndex];
+}
+
+genreButton.addEventListener('click', function() {
+    const musGenre = getRandomGenre();
+    document.getElementById("genre-display").textContent = musGenre;
+});
+
+getRandomGenre();
+
