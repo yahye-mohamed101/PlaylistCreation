@@ -254,6 +254,7 @@ function addDropEventsToList(ul) {
     ul.addEventListener('dragover', function (event) {
         event.preventDefault();
     });
+
     ul.addEventListener('drop', function (event) {
         event.preventDefault();
         const droppedData = event.dataTransfer.getData('text/plain');
@@ -269,6 +270,10 @@ function addDropEventsToList(ul) {
     });
 
 }
+
+// CALLS
+
+loadStoredTunes();
 
 
 
@@ -290,3 +295,5 @@ getRandomGenre();
 // CALLS
 
 loadStoredTunes();
+
+

@@ -290,6 +290,7 @@ a {
 
     }
 
+
     .grid-item1 {
         max-width: 91vw;
         height: 100%;
@@ -305,3 +306,16 @@ a {
     }
 
 }
+
+@media screen and (max-width: 768px) {
+    .random-generator {
+        display: block; /*Show on mobile */
+        position: fixed;  /*Fix it to the bottom*/
+        left: 0; /* Align to the left */
+        right: 0; /* Align to the right */
+        bottom: 0; /* Align to the bottom */
+        z-index: 1000;
+    }
+
+}
+    
