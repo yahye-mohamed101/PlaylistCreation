@@ -227,13 +227,9 @@ a {
 }
 
  .random-generator {
-    display: flex; 
-    top: 5%;
-    right: 5%;
-    position: relative; 
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-content: flex-end;
+    display: block;
+    text-align: center;
+    margin-top: 27px;
     
 }
 
@@ -288,7 +284,7 @@ a {
     
 }
 
-@media screen and (max-width: 872px) {
+@media screen and (max-width: 786px) {
  
     header {
       display: none;
@@ -316,4 +312,13 @@ a {
         max-width: 100%;
     }
 
+    .random-generator {
+        display: block;
+        text-align: center;
+        margin-top: 40px;
+    }
+
+    #generate-genre {
+
+    }
 }
