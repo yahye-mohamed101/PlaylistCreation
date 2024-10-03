@@ -79,6 +79,7 @@ createPlaylist?.addEventListener('click', function () {
     someOtherDiv.classList.add('accordion-body');
 
     const ul = document.createElement('ul');
+    ul.classList.add('accordionListItems');
     ul.innerHTML = '<li>boomboomboomboomboomboomboomboomboomboom</li>';
 
     someOtherDiv.appendChild(ul);
@@ -106,7 +107,7 @@ createPlaylist?.addEventListener('click', function () {
 });
 */
 
-// VARIABLES AS FUNCTIONS
+// REDIRECT FUNCTION
 
 const redirectPage = function (url) {
     redirectURL = url;
@@ -195,9 +196,9 @@ function addTuneToList(tune) {
         li.draggable = false;
     });
 
-    li.appendChild(a);
-    li.appendChild(editButton);
     li.appendChild(dragButton);
+    li.appendChild(editButton);
+    li.appendChild(a);
 
     recentlyAdded.appendChild(li);
 }
@@ -247,7 +248,10 @@ toggleButton.addEventListener('click', toggleTheme);
 // DRAG AND DROP FUNCTIONS
 
 function dragStart(event) {
-    event.dataTransfer.setData('text/plain', event.target.innerHTML);
+    const linkElement = event.target.querySelector('a');
+    if (linkElement) {
+        event.dataTransfer.setData('text/plain', linkElement.outerHTML);
+    }
 }
 
 function addDropEventsToList(ul) {
@@ -259,9 +263,9 @@ function addDropEventsToList(ul) {
         event.preventDefault();
         const droppedData = event.dataTransfer.getData('text/plain');
 
-        const placeholder = ul.querySelector('.placeholder');
-        if (placeholder) {
-            placeholder.remove();
+        const accordionListItems = ul.querySelector('.accordionListItems');
+        if (accordionListItems) {
+            accordionListItems.remove();
         }
 
         const newLi = document.createElement('li');
@@ -273,8 +277,6 @@ function addDropEventsToList(ul) {
 // CALLS
 
 loadStoredTunes();
-
-
 
 //RANDOM GENRE GENERATOR
 function getRandomGenre() {
@@ -290,6 +292,3 @@ genreButton.addEventListener('click', function() {
 });
 
 getRandomGenre();
-
-
-
