@@ -59,6 +59,7 @@ createPlaylist?.addEventListener('click', function () {
 
     const accordionItem = document.createElement('div');
     accordionItem.classList.add('accordion-item');
+    accordionItem.style.borderTopWidth = "0px";
 
     const h2 = document.createElement('h2');
     h2.classList.add('accordion-header');
@@ -79,8 +80,11 @@ createPlaylist?.addEventListener('click', function () {
     someOtherDiv.classList.add('accordion-body');
 
     const ul = document.createElement('ul');
+
+    ul.innerHTML = '<li>Drag Your Tunes Here!</li>';
     ul.classList.add('accordionListItems');
-    ul.innerHTML = '<li>boomboomboomboomboomboomboomboomboomboom</li>';
+
+
 
     someOtherDiv.appendChild(ul);
     someDiv.appendChild(someOtherDiv);
