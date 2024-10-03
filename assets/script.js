@@ -45,7 +45,6 @@ form?.addEventListener('submit', function (event) {
     };
 
     storeTune(newTune);
-
     addTuneToList(newTune);
 
     form.reset();
@@ -78,6 +77,8 @@ createPlaylist?.addEventListener('click', function () {
     someOtherDiv.classList.add('accordion-body');
 
     const ul = document.createElement('ul');
+    ul.classList.add('playlist-tunes');
+    ul.innerHTML = '<li class="placeholder">Drop your tunes here!</li>';
 
     someOtherDiv.appendChild(ul);
     someDiv.appendChild(someOtherDiv);
@@ -86,6 +87,8 @@ createPlaylist?.addEventListener('click', function () {
     accordionContainer.appendChild(accordionItem);
 
     newPlaylistInput.value = '';
+
+    addDropEventsToList(ul);
 });
 
 /*
@@ -102,7 +105,7 @@ createPlaylist?.addEventListener('click', function () {
 });
 */
 
-// VARIABLES AS FUNCITONS
+// VARIABLES AS FUNCTIONS
 
 const redirectPage = function (url) {
     redirectURL = url;
@@ -138,7 +141,6 @@ function storeTune(tune) {
     tunes.push(tune);
     localStorage.setItem(userForge, JSON.stringify(tunes));
 }
-
 
 function addTuneToList(tune) {
     const li = document.createElement('li');
@@ -193,8 +195,8 @@ function addTuneToList(tune) {
     });
 
     li.appendChild(a);
-    li.appendChild(dragButton);
     li.appendChild(editButton);
+    li.appendChild(dragButton);
 
     recentlyAdded.appendChild(li);
 }
@@ -209,7 +211,7 @@ function loadStoredTunes() {
 
 // IFS
 
-if(existingUser.username) {
+if (existingUser.username) {
     const loggedIn = document.querySelector('.username');
     loggedIn.textContent = `${existingUser.username}`;
 }
@@ -218,18 +220,15 @@ if(existingUser.username) {
 
 let isDarkMode = false;
 
-const savedTheme = 'theme'
+const savedTheme = 'theme';
 if (savedTheme === 'dark') {
     isDarkMode = true;
     body.setAttribute('data-theme', 'dark');
-    toggleButton.textContent = 'Switch to Light Mode'; 
-
+    toggleButton.textContent = 'Switch to Light Mode';
 }
 
 function toggleTheme() {
-    
     isDarkMode = !isDarkMode;
-    
 
     if (isDarkMode) {
         h5.setAttribute('data-theme', 'dark');
@@ -240,14 +239,36 @@ function toggleTheme() {
         body.removeAttribute('data-theme');
         toggleButton.textContent = 'Switch to Dark Mode';
     }
-  
-
-   
 }
+
 toggleButton.addEventListener('click', toggleTheme);
 
+// DRAG AND DROP FUNCTIONS
 
+function dragStart(event) {
+    event.dataTransfer.setData('text/plain', event.target.innerHTML);
+}
 
-//CALLS
+function addDropEventsToList(ul) {
+    ul.addEventListener('dragover', function (event) {
+        event.preventDefault();
+    });
+
+    ul.addEventListener('drop', function (event) {
+        event.preventDefault();
+        const droppedData = event.dataTransfer.getData('text/plain');
+
+        const placeholder = ul.querySelector('.placeholder');
+        if (placeholder) {
+            placeholder.remove();
+        }
+
+        const newLi = document.createElement('li');
+        newLi.innerHTML = droppedData;
+        ul.appendChild(newLi);
+    });
+}
+
+// CALLS
 
 loadStoredTunes();
