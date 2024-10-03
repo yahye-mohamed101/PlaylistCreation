@@ -42,7 +42,7 @@ button.btn.btn-primary
     border: none;
 }
 
-  .switch {
+  /*.switch {
     position: absolute;
     top: 34px;
     right: 76px;
@@ -57,7 +57,7 @@ button.btn.btn-primary
     height: 0;
   }
   
-  /* The slider */
+  /* The slider 
   .slider {
     position: absolute;
     cursor: pointer;
@@ -96,14 +96,14 @@ button.btn.btn-primary
     transform: translateX(26px);
   }
   
-  /* Rounded sliders */
+  /* Rounded sliders 
   .slider.round {
     border-radius: 34px;
   }
   
   .slider.round:before {
     border-radius: 50%;
-  }
+  } */
 
   label {
     color: rgb(0, 0, 0);
@@ -127,24 +127,4 @@ button.btn.btn-primary
     background-color: black;
 }
 
-/* MEDIA QUERIES */
-
-@media screen and (max-width: 768px) {
- 
-  header {
-    display: none;
-  }
-
-  body {
-     
-  }
-
-  .container {
-      padding: 10px; 
-  }
-
-  nav {
-      display: block; 
-  }
-}
 
