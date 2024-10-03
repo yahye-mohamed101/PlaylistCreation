@@ -298,6 +298,7 @@ a {
 
     }
 
+
     .grid-item1 {
         max-width: 91vw;
         height: 100%;
@@ -311,6 +312,7 @@ a {
     .hero {
         max-width: 100%;
     }
+
 
     .random-generator {
         display: block;
