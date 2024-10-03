@@ -5,7 +5,7 @@
 
 [data-theme='dark'] {
     --background-color: black;
-    --text-color: white;
+    --text-color: rgb(225, 225, 225);
 }
 
 body {
@@ -16,6 +16,7 @@ body {
 
 .container{
     text-align: right;
+    filter: drop-shadow(-3px 3px 8px white)
 }
 
 .switch {
@@ -69,6 +70,7 @@ input:checked + .slider:before {
     gap: 15px;
     padding: 20px;
     margin-top: -17px;
+    
 }
 
 .grid-item1{
@@ -76,6 +78,7 @@ input:checked + .slider:before {
     padding: 20px;
     border: solid 3px #ec5d1f;
     border-radius: 5px;
+    
 }
 
  .grid-item2 {
@@ -83,6 +86,8 @@ input:checked + .slider:before {
     padding: 20px;
     border: solid 3px #ec5d1f;
     border-radius: 5px;
+    position: relative;
+    
 }
 
 .item1-flex {
@@ -94,6 +99,7 @@ input:checked + .slider:before {
 
 .logo {
     margin: 20px;
+    filter: drop-shadow(-3px 3px 8px white)
 }
 
 .create-newPL {
@@ -102,6 +108,7 @@ input:checked + .slider:before {
     color: rgb(0, 0, 0);
     font-size: 1.5em;
     margin-top: 40px;
+    filter: drop-shadow(-3px 3px 8px white)
 }
 
 .new-playlist {
@@ -114,6 +121,7 @@ input:checked + .slider:before {
     color: white;
     border-radius: 5px;
     margin: 10px;
+    filter: drop-shadow(-3px 3px 8px white)
 }
 
 .hero-flex {
@@ -139,72 +147,6 @@ input:checked + .slider:before {
     cursor: pointer;
 }
 
-
-/* The switch - the box around the slider 
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-  }
-  
-  /* Hide default HTML checkbox 
-  .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-  
-  /* The slider 
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
-  
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
-  
-  input:checked + .slider {
-    background-color: #070707;
-  }
-  
-  input:focus + .slider {
-    box-shadow: 0 0 1px #0a0a0a;
-  }
-  
-  input:checked + .slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
-  }
-  
-  /* Rounded sliders 
-  .slider.round {
-    border-radius: 34px;
-  }
-  
-  .slider.round:before {
-    border-radius: 50%;
-  } */
-
-
-
 h2 {
     text-align: center;
     margin-top: 25px;
@@ -215,6 +157,7 @@ label {
     color: rgb(0, 0, 0);
     font-size: 1.1em;
     margin: 5px 0 5px 0;
+    filter: drop-shadow(0px 0px 4px white)
   }
 
 #logout {
@@ -223,6 +166,7 @@ label {
     border-radius: 5px;
     width: 95px;
     margin-top: 8px;
+    filter: drop-shadow(-3px 3px 8px white)
     
 }
   
@@ -246,23 +190,10 @@ input {
 
 .accordion-item {
     margin-top: 25px;
-    --bs-accordion-active-bg: #ff4c00de
+    --bs-accordion-active-bg: #ff4c00de;
+    filter: drop-shadow(-3px 3px 8px white)
 }
 
-
-/*
-body[data-theme='dark'] {
-    background-color: black;
-}
-
-h5[data-theme='dark'] {
-    color: white;
-}
-
-h5[data-theme='light'] {
-    color: black;
-}
-*/
 a {
     color:#ec5d1f;
     text-decoration: none;
@@ -292,6 +223,28 @@ a {
 
 .btn-secondary {
     background-image: linear-gradient(#f15025, #b83c07);
+    filter: drop-shadow(-3px 3px 8px white)
+}
+
+ .random-generator {
+    display: flex; 
+    top: 5%;
+    right: 5%;
+    position: relative; 
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-end;
+    
+    
+    
+}
+
+#generate-genre {
+    box-shadow: 1px solid black;
+    position: relative;
+    top: 35px;
+    
+    
 }
 
 /* MEDIA QUERIES */
