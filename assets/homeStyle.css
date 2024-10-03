@@ -72,6 +72,7 @@ input:checked + .slider:before {
     gap: 15px;
     padding: 20px;
     margin-top: -17px;
+    
 }
 
 .grid-item1{
@@ -79,6 +80,7 @@ input:checked + .slider:before {
     padding: 20px;
     border: solid 3px #ec5d1f;
     border-radius: 5px;
+    
 }
 
  .grid-item2 {
@@ -86,6 +88,8 @@ input:checked + .slider:before {
     padding: 20px;
     border: solid 3px #ec5d1f;
     border-radius: 5px;
+    position: relative;
+    
 }
 
 .item1-flex {
@@ -295,6 +299,27 @@ a {
 
 .btn-secondary {
     background-image: linear-gradient(#f15025, #b83c07);
+}
+
+ .random-generator {
+    display: flex; 
+    top: 5%;
+    right: 5%;
+    position: relative; 
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-end;
+    
+    
+    
+}
+
+#generate-genre {
+    box-shadow: 1px solid black;
+    position: relative;
+    top: 35px;
+    
+    
 }
 
 /* MEDIA QUERIES */
