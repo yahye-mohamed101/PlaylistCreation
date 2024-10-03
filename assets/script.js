@@ -14,6 +14,8 @@ const toggleButton = document.getElementById('toggleButton');
 const h5 = document.querySelector('h5');
 const accordionContainer = document.querySelector('#accordionExample');
 const musicNotes = document.querySelector('.notes');
+const musicGenre = ['Rock', 'Country', 'Blues', 'Hip-hop', 'Pop', 'Jazz', 'Metal', 'Dubstep', 'Indie rock', 'Reggae'];
+const genreButton = document.querySelector("#generate-genre")
 
 const existingUser = JSON.parse(localStorage.getItem('user')) || [];
 
@@ -78,7 +80,11 @@ createPlaylist?.addEventListener('click', function () {
     someOtherDiv.classList.add('accordion-body');
 
     const ul = document.createElement('ul');
+
     ul.innerHTML = '<li>Drag Your Tunes Here!</li>';
+    ul.classList.add('accordionListItems');
+
+
 
     someOtherDiv.appendChild(ul);
     someDiv.appendChild(someOtherDiv);
@@ -105,7 +111,7 @@ createPlaylist?.addEventListener('click', function () {
 });
 */
 
-// VARIABLES AS FUNCTIONS
+// REDIRECT FUNCTION
 
 const redirectPage = function (url) {
     redirectURL = url;
@@ -194,9 +200,9 @@ function addTuneToList(tune) {
         li.draggable = false;
     });
 
-    li.appendChild(a);
-    li.appendChild(editButton);
     li.appendChild(dragButton);
+    li.appendChild(editButton);
+    li.appendChild(a);
 
     recentlyAdded.appendChild(li);
 }
@@ -246,7 +252,10 @@ toggleButton.addEventListener('click', toggleTheme);
 // DRAG AND DROP FUNCTIONS
 
 function dragStart(event) {
-    event.dataTransfer.setData('text/plain', event.target.innerHTML);
+    const linkElement = event.target.querySelector('a');
+    if (linkElement) {
+        event.dataTransfer.setData('text/plain', linkElement.outerHTML);
+    }
 }
 
 function addDropEventsToList(ul) {
@@ -258,9 +267,9 @@ function addDropEventsToList(ul) {
         event.preventDefault();
         const droppedData = event.dataTransfer.getData('text/plain');
 
-        const placeholder = ul.querySelector('.placeholder');
-        if (placeholder) {
-            placeholder.remove();
+        const accordionListItems = ul.querySelector('.accordionListItems');
+        if (accordionListItems) {
+            accordionListItems.remove();
         }
 
         const newLi = document.createElement('li');
@@ -272,3 +281,18 @@ function addDropEventsToList(ul) {
 // CALLS
 
 loadStoredTunes();
+
+//RANDOM GENRE GENERATOR
+function getRandomGenre() {
+
+const randomIndex = Math.floor(Math.random() *musicGenre.length);
+
+return musicGenre[randomIndex];
+}
+
+genreButton.addEventListener('click', function() {
+    const musGenre = getRandomGenre();
+    document.getElementById("genre-display").textContent = musGenre;
+});
+
+getRandomGenre();

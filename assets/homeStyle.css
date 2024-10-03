@@ -245,6 +245,14 @@ a {
     
 }
 
+#genre-display {
+    position: absolute;
+    top: 175px;
+    left: 80%;
+    font-size: 4rem;
+    
+}
+
 /* MEDIA QUERIES */
 
 
