@@ -63,9 +63,6 @@ input:checked + .slider:before {
     transform: translateX(26px);
 } 
 
-
-
-
 .grid-container {
     display: grid;
     grid-template-columns: 1fr 3fr;

@@ -53,7 +53,7 @@ form?.addEventListener('submit', function (event) {
 createPlaylist?.addEventListener('click', function () {
     const playlistName = newPlaylistInput.value;
     if (playlistName === '') return;
-    const newAccordionId = `playlist-${playlistName}`;
+    const newAccordionId = `${playlistName}`;
 
     const accordionItem = document.createElement('div');
     accordionItem.classList.add('accordion-item');
@@ -77,8 +77,7 @@ createPlaylist?.addEventListener('click', function () {
     someOtherDiv.classList.add('accordion-body');
 
     const ul = document.createElement('ul');
-    ul.classList.add('playlist-tunes');
-    ul.innerHTML = '<li class="placeholder">Drop your tunes here!</li>';
+    ul.innerHTML = '<li>boomboomboomboomboomboomboomboomboomboom</li>';
 
     someOtherDiv.appendChild(ul);
     someDiv.appendChild(someOtherDiv);
