@@ -347,9 +347,9 @@ function listDropEvents(ul) {
         event.preventDefault();
         const droppedData = event.dataTransfer.getData('text/plain');
 
-        const accordionListItems = ul.querySelector('li');
-        if (accordionListItems) {
-            accordionListItems.remove();
+        const placeholder = ul.querySelector('li');
+        if (placeholder && placeholder.textContent === "Drag Your Tunes Here!") {
+            placeholder.remove();
         }
 
         const newLi = document.createElement('li');
@@ -360,6 +360,7 @@ function listDropEvents(ul) {
         savePlaylist(playlistName, ul);
     });
 }
+
 
 // RANDOM GENRE GENERATOR
 function getRandomGenre() {
