@@ -14,7 +14,7 @@ const toggleButton = document.getElementById('toggleButton');
 const h5 = document.querySelector('h5');
 const accordionContainer = document.querySelector('#accordionExample');
 const musicNotes = document.querySelector('.notes');
-const musicGenre = ['Rock', 'Country', 'Blues', 'Hip-hop', 'Pop', 'Jazz', 'Metal', 'Dubstep', 'Indie rock', 'Reggae'];
+const musicGenre = ['Rock', 'Country', 'Blues', 'Hip-hop', 'Pop', 'Jazz', 'Metal', 'Dubstep', 'Indie rock', 'Reggae', 'Kpop'];
 const genreButton = document.querySelector("#generate-genre")
 
 const existingUser = JSON.parse(localStorage.getItem('user')) || [];
@@ -276,6 +276,7 @@ function addDropEventsToList(ul) {
         newLi.innerHTML = droppedData;
         ul.appendChild(newLi);
     });
+
 }
 
 // CALLS
@@ -296,3 +297,6 @@ genreButton.addEventListener('click', function() {
 });
 
 getRandomGenre();
+
+
+

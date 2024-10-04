@@ -298,6 +298,7 @@ a {
 
     }
 
+
     .grid-item1 {
         max-width: 91vw;
         height: 100%;
@@ -312,9 +313,9 @@ a {
         max-width: 100%;
     }
 
+
     .random-generator {
         display: block;
         text-align: center;
         margin-top: 40px;
     }
-}
