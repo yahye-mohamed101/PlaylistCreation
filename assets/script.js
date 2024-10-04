@@ -52,12 +52,9 @@ addToForge?.addEventListener('submit', function (event) {
     addToForge.reset();
 });
 
-// PLAYLIST GENERATOR LOGIC
+// ACCORDION GENERATOR
 
-createPlaylist?.addEventListener('click', function () {
-    const playlistName = newPlaylistInput.value.trim();
-    if (playlistName === '') return;
-
+function createAccordion(playlistName) {
     const newAccordionId = `${playlistName}`;
 
     const accordionItem = document.createElement('div');
@@ -92,11 +89,20 @@ createPlaylist?.addEventListener('click', function () {
     accordionItem.appendChild(h2);
     accordionContainer.appendChild(accordionItem);
 
+    listDropEvents(ul);
+
+    return ul;
+}
+
+createPlaylist?.addEventListener('click', function () {
+    const playlistName = newPlaylistInput.value.trim();
+    if (playlistName === '') return;
+
+    const ul = createAccordion(playlistName);
+
     newPlaylistInput.value = '';
 
     savePlaylist(playlistName, ul);
-    
-    listDropEvents(ul);
 });
 
 // REDIRECT FUNCTION
@@ -233,66 +239,21 @@ function savePlaylist(playlistName, ul) {
 function loadStoredPlaylists() {
     const currentUser = JSON.parse(localStorage.getItem('user'));
     if (!currentUser || !currentUser.username) return;
-    
+
     const playlistKey = `${currentUser.username}`;
     const storedPlaylists = JSON.parse(localStorage.getItem(playlistKey)) || {};
 
     Object.keys(storedPlaylists).forEach(playlistName => {
-        createAccordionForPlaylist(playlistName);
-    });
 
-    Object.keys(storedPlaylists).forEach(playlistName => {
+        const ul = createAccordion(playlistName);
+
         const tunes = storedPlaylists[playlistName];
-        const ul = document.querySelector(`#${playlistName} ul`);
-
-        if (ul) {
-            tunes.forEach(tuneHTML => {
-                const li = document.createElement('li');
-                li.innerHTML = tuneHTML;
-                ul.appendChild(li);
-            });
-        }
+        tunes.forEach(tuneHTML => {
+            const li = document.createElement('li');
+            li.innerHTML = tuneHTML;
+            ul.appendChild(li);
+        });
     });
-}
-
-// ACCORDION GENERATOR
-
-function createAccordionForPlaylist(playlistName) {
-    const newAccordionId = `${playlistName}`;
-
-    const accordionItem = document.createElement('div');
-    accordionItem.classList.add('accordion-item');
-    accordionItem.style.borderTopWidth = "0px";
-
-    const h2 = document.createElement('h2');
-    h2.classList.add('accordion-header');
-
-    const button = document.createElement('button');
-    button.classList.add('accordion-button', 'collapsed');
-    button.setAttribute('data-bs-toggle', 'collapse');
-    button.setAttribute('data-bs-target', `#${newAccordionId}`);
-    button.textContent = playlistName;
-
-    h2.appendChild(button);
-    const someDiv = document.createElement('div');
-    someDiv.classList.add('accordion-collapse', 'collapse');
-    someDiv.id = newAccordionId;
-    someDiv.setAttribute('data-bs-parent', '#accordionExample');
-
-    const someOtherDiv = document.createElement('div');
-    someOtherDiv.classList.add('accordion-body');
-
-    const ul = document.createElement('ul');
-    ul.innerHTML = '<li>Drag Your Tunes Here!</li>';
-    ul.classList.add('accordionListItems');
-
-    someOtherDiv.appendChild(ul);
-    someDiv.appendChild(someOtherDiv);
-    accordionItem.appendChild(someDiv);
-    accordionItem.appendChild(h2);
-    accordionContainer.appendChild(accordionItem);
-
-    listDropEvents(ul);
 }
 
 // USERNAME DISPLAY LOGIC
@@ -361,19 +322,18 @@ function listDropEvents(ul) {
     });
 }
 
-
 // RANDOM GENRE GENERATOR
 function getRandomGenre() {
 
-    const randomIndex = Math.floor(Math.random() *musicGenre.length);
-    
+    const randomIndex = Math.floor(Math.random() * musicGenre.length);
+
     return musicGenre[randomIndex];
-    }
-    
-    genreButton?.addEventListener('click', function() {
-        const musGenre = getRandomGenre();
-        document.getElementById("genre-display").textContent = musGenre;
-    });
+}
+
+genreButton?.addEventListener('click', function () {
+    const musGenre = getRandomGenre();
+    document.getElementById("genre-display").textContent = musGenre;
+});
 
 // CALLS
 
