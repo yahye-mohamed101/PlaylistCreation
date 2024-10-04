@@ -3,7 +3,7 @@
     TuneForge is an innovative interactive platform that allows users to create (or "forge") songs based on their chosen artist and song title, generating a link to the selected song. Users can also create playlists and seamlessly drag their newly forged songs into their custom collections.
 
 ## Deployed Site
-   Click, or copy and paste this URL into your browser of choice to check out the deployed site! https://yahye-mohamed101.github.io/TuneForge/userHome.html
+   Click, or copy and paste this URL into your browser of choice to check out the deployed site! https://yahye-mohamed101.github.io/TuneForge/
 
 ## Table of Contents
 
