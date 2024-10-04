@@ -1,4 +1,4 @@
-// CONSTS
+// OBJECTS
 
 const usernameInput = document.querySelector('#exampleInputEmail1');
 const passwordInput = document.querySelector('#exampleInputPassword1');
@@ -21,17 +21,17 @@ const existingUser = JSON.parse(localStorage.getItem('user')) || [];
 
 const tunes = JSON.parse(localStorage.getItem('tunes')) || [];
 
-// LETS
-
 let redirectURL = '';
 
-// EVENT LISTENERS
+// PAGE DIRECTION
 
 submitButton?.addEventListener('submit', storeSubmission);
 
 logoutButton?.addEventListener('click', function () {
     redirectPage('index.html');
 });
+
+// FORGE TUNE FORM
 
 addToForge?.addEventListener('submit', function (event) {
     event.preventDefault();
@@ -51,6 +51,8 @@ addToForge?.addEventListener('submit', function (event) {
 
     addToForge.reset();
 });
+
+// PLAYLIST GENERATOR LOGIC
 
 createPlaylist?.addEventListener('click', function () {
     const playlistName = newPlaylistInput.value.trim();
@@ -97,20 +99,6 @@ createPlaylist?.addEventListener('click', function () {
     listDropEvents(ul);
 });
 
-/*
-createPlaylist?.addEventListener('click', function () {
-    const playlistName = newPlaylistInput.value.trim();
-    const h4 = document.createElement('h4');
-    const li = document.createElement('li');
-    if (playlistName === '') return;
-    li.classList.add('playlist-item');
-    h4.textContent = playlistName;
-    li.appendChild(h4);
-    playlistAccordian.appendChild(li);
-    newPlaylistInput.value = '';
-});
-*/
-
 // REDIRECT FUNCTION
 
 const redirectPage = function (url) {
@@ -118,7 +106,7 @@ const redirectPage = function (url) {
     location.assign(url);
 };
 
-// FUNCTIONS
+// LOGIN FORM
 
 function storeSubmission(event) {
     event.preventDefault();
@@ -139,14 +127,28 @@ function storeSubmission(event) {
     }
 }
 
+// SESSION STORAGE FOR RECENTLY FORGED TUNES
+
 function storeTune(tune) {
     const currentUser = JSON.parse(localStorage.getItem('user'));
     if (!currentUser || !currentUser.username) return;
+
     const userForge = `whoa`; /*`${currentUser.username}`;*/
-    let tunes = JSON.parse(localStorage.getItem(userForge)) || [];
+    let tunes = JSON.parse(sessionStorage.getItem(userForge)) || [];
     tunes.push(tune);
-    localStorage.setItem(userForge, JSON.stringify(tunes));
+    sessionStorage.setItem(userForge, JSON.stringify(tunes));
 }
+
+function loadStoredTunes() {
+    const currentUser = JSON.parse(localStorage.getItem('user'));
+    if (!currentUser || !currentUser.username) return;
+
+    const userForge = `whoa`;
+    const tunes = JSON.parse(sessionStorage.getItem(userForge)) || [];
+    tunes.forEach(tune => addTuneToList(tune));
+}
+
+// RECENTLY FORGED FUNCTIONALITY
 
 function addTuneToList(tune) {
     const li = document.createElement('li');
@@ -207,6 +209,8 @@ function addTuneToList(tune) {
     recentlyAdded.appendChild(li);
 }
 
+// PLAYLIST LOCAL STORAGE FUNCTIONALITY
+
 function savePlaylist(playlistName, ul) {
     const currentUser = JSON.parse(localStorage.getItem('user'));
     if (!currentUser || !currentUser.username) return;
@@ -224,14 +228,6 @@ function savePlaylist(playlistName, ul) {
     }
 
     localStorage.setItem(playlistKey, JSON.stringify(playlistsData));
-}
-
-function loadStoredTunes() {
-    const currentUser = JSON.parse(localStorage.getItem('user'));
-    if (!currentUser || !currentUser.username) return;
-    const userForge = `whoa`; /*`${currentUser.username}`;*/
-    const tunes = JSON.parse(localStorage.getItem(userForge)) || [];
-    tunes.forEach(tune => addTuneToList(tune));
 }
 
 function loadStoredPlaylists() {
@@ -258,6 +254,8 @@ function loadStoredPlaylists() {
         }
     });
 }
+
+// ACCORDION GENERATOR
 
 function createAccordionForPlaylist(playlistName) {
     const newAccordionId = `${playlistName}`;
@@ -297,14 +295,14 @@ function createAccordionForPlaylist(playlistName) {
     listDropEvents(ul);
 }
 
-// IFS
+// USERNAME DISPLAY LOGIC
 
 if (existingUser.username) {
     const loggedIn = document.querySelector('.username');
     loggedIn.textContent = `${existingUser.username}`;
 }
 
-//TOGGLE BUTTON FUNCTION
+// TOGGLE BUTTON FUNCTION
 
 let isDarkMode = false;
 
@@ -363,22 +361,21 @@ function listDropEvents(ul) {
     });
 }
 
-// CALLS
-
-loadStoredTunes();
-loadStoredPlaylists();
-
-//RANDOM GENRE GENERATOR
+// RANDOM GENRE GENERATOR
 function getRandomGenre() {
 
-const randomIndex = Math.floor(Math.random() *musicGenre.length);
+    const randomIndex = Math.floor(Math.random() *musicGenre.length);
+    
+    return musicGenre[randomIndex];
+    }
+    
+    genreButton?.addEventListener('click', function() {
+        const musGenre = getRandomGenre();
+        document.getElementById("genre-display").textContent = musGenre;
+    });
 
-return musicGenre[randomIndex];
-}
-
-genreButton?.addEventListener('click', function() {
-    const musGenre = getRandomGenre();
-    document.getElementById("genre-display").textContent = musGenre;
-});
+// CALLS
 
 getRandomGenre();
+loadStoredTunes();
+loadStoredPlaylists();
