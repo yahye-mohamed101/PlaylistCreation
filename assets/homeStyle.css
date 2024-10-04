@@ -227,13 +227,9 @@ a {
 }
 
  .random-generator {
-    display: flex; 
-    top: 5%;
-    right: 5%;
-    position: relative; 
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-content: flex-end;
+    display: block;
+    text-align: center;
+    margin-top: 27px;
     
 }
 
@@ -288,7 +284,7 @@ a {
     
 }
 
-@media screen and (max-width: 872px) {
+@media screen and (max-width: 786px) {
  
     header {
       display: none;
@@ -317,17 +313,14 @@ a {
         max-width: 100%;
     }
 
-}
 
-@media screen and (max-width: 768px) {
     .random-generator {
-        display: block; /*Show on mobile */
-        position: fixed;  /*Fix it to the bottom*/
-        left: 0; /* Align to the left */
-        right: 0; /* Align to the right */
-        bottom: 0; /* Align to the bottom */
-        z-index: 1000;
+        display: block;
+        text-align: center;
+        margin-top: 40px;
     }
 
+    #generate-genre {
+
+    }
 }
-    
