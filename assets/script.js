@@ -1,10 +1,10 @@
-// CONSTS
+// OBJECTS
 
 const usernameInput = document.querySelector('#exampleInputEmail1');
 const passwordInput = document.querySelector('#exampleInputPassword1');
 const submitButton = document.querySelector('#loginForm');
 const logoutButton = document.querySelector('#logout');
-const form = document.querySelector('#newTuneForm');
+const addToForge = document.querySelector('#newTuneForm');
 const recentlyAdded = document.querySelector('#recentlyAdded');
 const newPlaylistInput = document.querySelector('#newPlaylist');
 const createPlaylist = document.querySelector('#createPlaylist');
@@ -21,11 +21,9 @@ const existingUser = JSON.parse(localStorage.getItem('user')) || [];
 
 const tunes = JSON.parse(localStorage.getItem('tunes')) || [];
 
-// LETS
-
 let redirectURL = '';
 
-// EVENT LISTENERS
+// PAGE DIRECTION
 
 submitButton?.addEventListener('submit', storeSubmission);
 
@@ -33,7 +31,9 @@ logoutButton?.addEventListener('click', function () {
     redirectPage('index.html');
 });
 
-form?.addEventListener('submit', function (event) {
+// FORGE TUNE FORM
+
+addToForge?.addEventListener('submit', function (event) {
     event.preventDefault();
 
     const artistName = document.querySelector('#artistName').value;
@@ -49,12 +49,12 @@ form?.addEventListener('submit', function (event) {
     storeTune(newTune);
     addTuneToList(newTune);
 
-    form.reset();
+    addToForge.reset();
 });
 
-createPlaylist?.addEventListener('click', function () {
-    const playlistName = newPlaylistInput.value;
-    if (playlistName === '') return;
+// ACCORDION GENERATOR
+
+function createAccordion(playlistName) {
     const newAccordionId = `${playlistName}`;
 
     const accordionItem = document.createElement('div');
@@ -80,11 +80,8 @@ createPlaylist?.addEventListener('click', function () {
     someOtherDiv.classList.add('accordion-body');
 
     const ul = document.createElement('ul');
-
     ul.innerHTML = '<li>Drag Your Tunes Here!</li>';
     ul.classList.add('accordionListItems');
-
-
 
     someOtherDiv.appendChild(ul);
     someDiv.appendChild(someOtherDiv);
@@ -92,24 +89,21 @@ createPlaylist?.addEventListener('click', function () {
     accordionItem.appendChild(h2);
     accordionContainer.appendChild(accordionItem);
 
-    newPlaylistInput.value = '';
+    listDropEvents(ul);
 
-    addDropEventsToList(ul);
-});
+    return ul;
+}
 
-/*
 createPlaylist?.addEventListener('click', function () {
     const playlistName = newPlaylistInput.value.trim();
-    const h4 = document.createElement('h4');
-    const li = document.createElement('li');
     if (playlistName === '') return;
-    li.classList.add('playlist-item');
-    h4.textContent = playlistName;
-    li.appendChild(h4);
-    playlistAccordian.appendChild(li);
+
+    const ul = createAccordion(playlistName);
+
     newPlaylistInput.value = '';
+
+    savePlaylist(playlistName, ul);
 });
-*/
 
 // REDIRECT FUNCTION
 
@@ -118,7 +112,7 @@ const redirectPage = function (url) {
     location.assign(url);
 };
 
-// FUNCTIONS
+// LOGIN FORM
 
 function storeSubmission(event) {
     event.preventDefault();
@@ -139,14 +133,28 @@ function storeSubmission(event) {
     }
 }
 
+// SESSION STORAGE FOR RECENTLY FORGED TUNES
+
 function storeTune(tune) {
     const currentUser = JSON.parse(localStorage.getItem('user'));
     if (!currentUser || !currentUser.username) return;
-    const userForge = `${currentUser.username}`;
-    let tunes = JSON.parse(localStorage.getItem(userForge)) || [];
+
+    const userForge = `whoa`; /*`${currentUser.username}`;*/
+    let tunes = JSON.parse(sessionStorage.getItem(userForge)) || [];
     tunes.push(tune);
-    localStorage.setItem(userForge, JSON.stringify(tunes));
+    sessionStorage.setItem(userForge, JSON.stringify(tunes));
 }
+
+function loadStoredTunes() {
+    const currentUser = JSON.parse(localStorage.getItem('user'));
+    if (!currentUser || !currentUser.username) return;
+
+    const userForge = `whoa`;
+    const tunes = JSON.parse(sessionStorage.getItem(userForge)) || [];
+    tunes.forEach(tune => addTuneToList(tune));
+}
+
+// RECENTLY FORGED FUNCTIONALITY
 
 function addTuneToList(tune) {
     const li = document.createElement('li');
@@ -207,22 +215,55 @@ function addTuneToList(tune) {
     recentlyAdded.appendChild(li);
 }
 
-function loadStoredTunes() {
+// PLAYLIST LOCAL STORAGE FUNCTIONALITY
+
+function savePlaylist(playlistName, ul) {
     const currentUser = JSON.parse(localStorage.getItem('user'));
     if (!currentUser || !currentUser.username) return;
-    const userForge = `${currentUser.username}`;
-    const tunes = JSON.parse(localStorage.getItem(userForge)) || [];
-    tunes.forEach(tune => addTuneToList(tune));
+
+    const playlistKey = `${currentUser.username}`;
+    let playlistsData = JSON.parse(localStorage.getItem(playlistKey)) || {};
+
+    if (!playlistsData[playlistName]) {
+        playlistsData[playlistName] = [];
+    }
+
+    if (ul) {
+        const tunes = Array.from(ul.querySelectorAll('li')).map(li => li.innerHTML);
+        playlistsData[playlistName] = tunes;
+    }
+
+    localStorage.setItem(playlistKey, JSON.stringify(playlistsData));
 }
 
-// IFS
+function loadStoredPlaylists() {
+    const currentUser = JSON.parse(localStorage.getItem('user'));
+    if (!currentUser || !currentUser.username) return;
+
+    const playlistKey = `${currentUser.username}`;
+    const storedPlaylists = JSON.parse(localStorage.getItem(playlistKey)) || {};
+
+    Object.keys(storedPlaylists).forEach(playlistName => {
+
+        const ul = createAccordion(playlistName);
+
+        const tunes = storedPlaylists[playlistName];
+        tunes.forEach(tuneHTML => {
+            const li = document.createElement('li');
+            li.innerHTML = tuneHTML;
+            ul.appendChild(li);
+        });
+    });
+}
+
+// USERNAME DISPLAY LOGIC
 
 if (existingUser.username) {
     const loggedIn = document.querySelector('.username');
     loggedIn.textContent = `${existingUser.username}`;
 }
 
-//TOGGLE BUTTON FUNCTION
+// TOGGLE BUTTON FUNCTION
 
 let isDarkMode = false;
 
@@ -247,7 +288,7 @@ function toggleTheme() {
     }
 }
 
-toggleButton.addEventListener('click', toggleTheme);
+toggleButton?.addEventListener('click', toggleTheme);
 
 // DRAG AND DROP FUNCTIONS
 
@@ -258,45 +299,44 @@ function dragStart(event) {
     }
 }
 
-function addDropEventsToList(ul) {
-    ul.addEventListener('dragover', function (event) {
+function listDropEvents(ul) {
+    ul?.addEventListener('dragover', function (event) {
         event.preventDefault();
     });
 
-    ul.addEventListener('drop', function (event) {
+    ul?.addEventListener('drop', function (event) {
         event.preventDefault();
         const droppedData = event.dataTransfer.getData('text/plain');
 
-        const accordionListItems = ul.querySelector('.accordionListItems');
-        if (accordionListItems) {
-            accordionListItems.remove();
+        const placeholder = ul.querySelector('li');
+        if (placeholder && placeholder.textContent === "Drag Your Tunes Here!") {
+            placeholder.remove();
         }
 
         const newLi = document.createElement('li');
         newLi.innerHTML = droppedData;
         ul.appendChild(newLi);
-    });
 
+        const playlistName = ul.closest('.accordion-collapse').id;
+        savePlaylist(playlistName, ul);
+    });
 }
 
-// CALLS
-
-loadStoredTunes();
-
-//RANDOM GENRE GENERATOR
+// RANDOM GENRE GENERATOR
 function getRandomGenre() {
 
-const randomIndex = Math.floor(Math.random() *musicGenre.length);
+    const randomIndex = Math.floor(Math.random() * musicGenre.length);
 
-return musicGenre[randomIndex];
+    return musicGenre[randomIndex];
 }
 
-genreButton.addEventListener('click', function() {
+genreButton?.addEventListener('click', function () {
     const musGenre = getRandomGenre();
     document.getElementById("genre-display").textContent = musGenre;
 });
 
+// CALLS
+
 getRandomGenre();
-
-
-
+loadStoredTunes();
+loadStoredPlaylists();
