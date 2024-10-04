@@ -1,6 +1,9 @@
 
 # TuneForge ![Logo](Images/Group.png)
-    TuneForge is an interactive website that allows the user to create (or forge) a song based on the artist and song name snd then generate a link to the URL of the song of their choosing. The user can then create a playlist and drag their newly forged song into the playlist of their creation.
+    TuneForge is an innovative interactive platform that allows users to create (or "forge") songs based on their chosen artist and song title, generating a link to the selected song. Users can also create playlists and seamlessly drag their newly forged songs into their custom collections.
+
+## Deployed Site
+   Click, or copy and paste this URL into your browser of choice to check out the deployed site! https://yahye-mohamed101.github.io/TuneForge/userHome.html
 
 ## Table of Contents
 
@@ -11,24 +14,33 @@
 - [Acknowledgments](#acknowledgments)
 
 ## Features
-- Feature 1
-    The first feature of the apllication is the ability to log in using an email address and password to to access the TuneForge.
+- User Authentication <br>
+    Users can securely log in using their email address and password to access the TuneForge platform.<br>
+    <br>
     ![LogIn](Images/Screenshot%202024-10-02%20at%2012.31.14 PM.png)
-- Feature 2
-    The user is greeted with a hero image that explains the process of forging a tune. They can then enter the artist name, song title, and URL to the song the would like to link. When the user clicks the "Forge My Tune" button a link to the song with the artist name and song name is then created.
+    <br>
+- Song Forging Process <br>
+    After logging in, users are welcomed with a hero image that outlines the song forging process. They can enter the artist name, song title, and URL of their desired song. By clicking the "Forge My Tune" button, a link to the song is generated, complete with the artist and title. <br>
+    <br>
     ![Hero](Images/Screenshot%202024-10-02%20at%2012.33.33 PM.png)
-- Feature 3
-    The user created link is then placed in the "Recently Forged" section of the page. The newly created song(s) are accompanied by 2 buttons. The first button allows the user the ability to drag the tune into a playlist (- Feature 4). The second button, titled "Reforge", allows the user to edit the songs artist name, song title, and URL if there were any mistakes. The modal that is presented then take the edited song link and adds it back to the "Recently Forged" section. 
+    
+- Recently Forged Section<br>
+    Newly created links are displayed in the "Recently Forged" section, featuring two interactive buttons: one for adding the tune to a playlist (Feature 4) and another labeled "Reforge," which allows users to modify the song's details if necessary. The updated song link will then reflect in the "Recently Forged" section.<br>
+    <br>
     ![NewSong](Images/Screenshot%202024-10-02%20at%2012.35.26 PM.png)
     ![Modal](Images/Screenshot%202024-10-02%20at%2012.36.39 PM.png)
-- Feature 4
-    The "Create a New Playlist" section allows the user to enter the name of the playlist they would like to create. When the user clicks the "Create!" button an accordion style list is created below the "Create a New Playlist" section.
+- Playlist Creation<br>
+    Users can create a new playlist by entering a name and clicking the "Create!" button, which generates an accordion-style list displaying the created playlists.<br>
+    <br>
     ![LogIn](Images/Screenshot%202024-10-02%20at%2012.40.03 PM.png)
-- Feature 5
-    Above the playlists, the users provided email address is displayed with a logout button below the email. If the user would like to go back to the login page and log themselves out, they can use the "Logout" button.
-    
+- User Profile Management<br>
+    The user's email address is prominently displayed above their playlists, accompanied by a logout option. The "Logout" button facilitates a return to the login page.<br>
+    <br>
     ![LogIn](Images/Screenshot%202024-10-02%20at%2012.41.28 PM.png)
-
+- Random Genre Generator<br>
+    For users seeking playlist inspiration, the platform includes a "Generate Random Genre" button, providing a new genre with each click to spark creative ideas.<br>
+<br>
+    ![LogIn](Images/Screenshot%202024-10-03%20at%205.52.03 PM.png)
 ## Installation
 
 1. Clone the repository:
@@ -63,5 +75,5 @@ Please refer to the license at https://github.com/yahye-mohamed101/PlaylistCreat
 - **[Josh Askew, Yahye Mohamed, and Ethan Carr]** - For the initial concept and project management.
 - **[Braylon Medvec]** - For their invaluable contributions do the design and wireframe concepts.
 - **[Bootstrap]** - This project uses Bootstrap, which provides excellent features for some buttons, accordions, and modal styling.
-- **Community Support** - Thanks to the MDN and W3 Schools documentation for discussions and support during the development process.
+- **Community Support** - Thanks to the MDN and W3 Schools documentation as well as StackOverflow for discussions and support during the development process.
 
