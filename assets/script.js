@@ -91,10 +91,11 @@ createPlaylist?.addEventListener('click', function () {
     accordionContainer.appendChild(accordionItem);
 
     newPlaylistInput.value = '';
-    storePlaylist(playlistName);
+
+    savePlaylist(playlistName, ul);
+    
     listDropEvents(ul);
 });
-
 
 /*
 createPlaylist?.addEventListener('click', function () {
@@ -141,7 +142,7 @@ function storeSubmission(event) {
 function storeTune(tune) {
     const currentUser = JSON.parse(localStorage.getItem('user'));
     if (!currentUser || !currentUser.username) return;
-    const userForge = `${currentUser.username}`;
+    const userForge = `whoa`; /*`${currentUser.username}`;*/
     let tunes = JSON.parse(localStorage.getItem(userForge)) || [];
     tunes.push(tune);
     localStorage.setItem(userForge, JSON.stringify(tunes));
@@ -206,22 +207,29 @@ function addTuneToList(tune) {
     recentlyAdded.appendChild(li);
 }
 
-function storePlaylist(playlistName) {
+function savePlaylist(playlistName, ul) {
     const currentUser = JSON.parse(localStorage.getItem('user'));
     if (!currentUser || !currentUser.username) return;
-    const playlistKey = `${currentUser.username}`;
-    let playlists = JSON.parse(localStorage.getItem(playlistKey)) || [];
-    if (!playlists.includes(playlistName)) {
-        playlists.push(playlistName);
-    }
-    localStorage.setItem(playlistKey, JSON.stringify(playlists));
-}
 
+    const playlistKey = `${currentUser.username}`;
+    let playlistsData = JSON.parse(localStorage.getItem(playlistKey)) || {};
+
+    if (!playlistsData[playlistName]) {
+        playlistsData[playlistName] = [];
+    }
+
+    if (ul) {
+        const tunes = Array.from(ul.querySelectorAll('li')).map(li => li.innerHTML);
+        playlistsData[playlistName] = tunes;
+    }
+
+    localStorage.setItem(playlistKey, JSON.stringify(playlistsData));
+}
 
 function loadStoredTunes() {
     const currentUser = JSON.parse(localStorage.getItem('user'));
     if (!currentUser || !currentUser.username) return;
-    const userForge = `${currentUser.username}`;
+    const userForge = `whoa`; /*`${currentUser.username}`;*/
     const tunes = JSON.parse(localStorage.getItem(userForge)) || [];
     tunes.forEach(tune => addTuneToList(tune));
 }
@@ -230,11 +238,24 @@ function loadStoredPlaylists() {
     const currentUser = JSON.parse(localStorage.getItem('user'));
     if (!currentUser || !currentUser.username) return;
     
-    const playlistKey = `${currentUser.username}-playlists`;
-    const storedPlaylists = JSON.parse(localStorage.getItem(playlistKey)) || [];
-    
-    storedPlaylists.forEach(playlistName => {
+    const playlistKey = `${currentUser.username}`;
+    const storedPlaylists = JSON.parse(localStorage.getItem(playlistKey)) || {};
+
+    Object.keys(storedPlaylists).forEach(playlistName => {
         createAccordionForPlaylist(playlistName);
+    });
+
+    Object.keys(storedPlaylists).forEach(playlistName => {
+        const tunes = storedPlaylists[playlistName];
+        const ul = document.querySelector(`#${playlistName} ul`);
+
+        if (ul) {
+            tunes.forEach(tuneHTML => {
+                const li = document.createElement('li');
+                li.innerHTML = tuneHTML;
+                ul.appendChild(li);
+            });
+        }
     });
 }
 
@@ -276,7 +297,6 @@ function createAccordionForPlaylist(playlistName) {
     listDropEvents(ul);
 }
 
-
 // IFS
 
 if (existingUser.username) {
@@ -309,7 +329,7 @@ function toggleTheme() {
     }
 }
 
-toggleButton.addEventListener('click', toggleTheme);
+toggleButton?.addEventListener('click', toggleTheme);
 
 // DRAG AND DROP FUNCTIONS
 
@@ -329,7 +349,7 @@ function listDropEvents(ul) {
         event.preventDefault();
         const droppedData = event.dataTransfer.getData('text/plain');
 
-        const accordionListItems = ul.querySelector('.accordionListItems');
+        const accordionListItems = ul.querySelector('li');
         if (accordionListItems) {
             accordionListItems.remove();
         }
@@ -337,6 +357,9 @@ function listDropEvents(ul) {
         const newLi = document.createElement('li');
         newLi.innerHTML = droppedData;
         ul.appendChild(newLi);
+
+        const playlistName = ul.closest('.accordion-collapse').id;
+        savePlaylist(playlistName, ul);
     });
 }
 
@@ -353,7 +376,7 @@ const randomIndex = Math.floor(Math.random() *musicGenre.length);
 return musicGenre[randomIndex];
 }
 
-genreButton.addEventListener('click', function() {
+genreButton?.addEventListener('click', function() {
     const musGenre = getRandomGenre();
     document.getElementById("genre-display").textContent = musGenre;
 });
