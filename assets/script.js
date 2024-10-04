@@ -4,7 +4,7 @@ const usernameInput = document.querySelector('#exampleInputEmail1');
 const passwordInput = document.querySelector('#exampleInputPassword1');
 const submitButton = document.querySelector('#loginForm');
 const logoutButton = document.querySelector('#logout');
-const form = document.querySelector('#newTuneForm');
+const addToForge = document.querySelector('#newTuneForm');
 const recentlyAdded = document.querySelector('#recentlyAdded');
 const newPlaylistInput = document.querySelector('#newPlaylist');
 const createPlaylist = document.querySelector('#createPlaylist');
@@ -33,7 +33,7 @@ logoutButton?.addEventListener('click', function () {
     redirectPage('index.html');
 });
 
-form?.addEventListener('submit', function (event) {
+addToForge?.addEventListener('submit', function (event) {
     event.preventDefault();
 
     const artistName = document.querySelector('#artistName').value;
@@ -49,12 +49,13 @@ form?.addEventListener('submit', function (event) {
     storeTune(newTune);
     addTuneToList(newTune);
 
-    form.reset();
+    addToForge.reset();
 });
 
 createPlaylist?.addEventListener('click', function () {
-    const playlistName = newPlaylistInput.value;
+    const playlistName = newPlaylistInput.value.trim();
     if (playlistName === '') return;
+
     const newAccordionId = `${playlistName}`;
 
     const accordionItem = document.createElement('div');
@@ -80,11 +81,8 @@ createPlaylist?.addEventListener('click', function () {
     someOtherDiv.classList.add('accordion-body');
 
     const ul = document.createElement('ul');
-
     ul.innerHTML = '<li>Drag Your Tunes Here!</li>';
     ul.classList.add('accordionListItems');
-
-
 
     someOtherDiv.appendChild(ul);
     someDiv.appendChild(someOtherDiv);
@@ -93,9 +91,10 @@ createPlaylist?.addEventListener('click', function () {
     accordionContainer.appendChild(accordionItem);
 
     newPlaylistInput.value = '';
-
-    addDropEventsToList(ul);
+    storePlaylist(playlistName);
+    listDropEvents(ul);
 });
+
 
 /*
 createPlaylist?.addEventListener('click', function () {
@@ -207,6 +206,18 @@ function addTuneToList(tune) {
     recentlyAdded.appendChild(li);
 }
 
+function storePlaylist(playlistName) {
+    const currentUser = JSON.parse(localStorage.getItem('user'));
+    if (!currentUser || !currentUser.username) return;
+    const playlistKey = `${currentUser.username}`;
+    let playlists = JSON.parse(localStorage.getItem(playlistKey)) || [];
+    if (!playlists.includes(playlistName)) {
+        playlists.push(playlistName);
+    }
+    localStorage.setItem(playlistKey, JSON.stringify(playlists));
+}
+
+
 function loadStoredTunes() {
     const currentUser = JSON.parse(localStorage.getItem('user'));
     if (!currentUser || !currentUser.username) return;
@@ -214,6 +225,57 @@ function loadStoredTunes() {
     const tunes = JSON.parse(localStorage.getItem(userForge)) || [];
     tunes.forEach(tune => addTuneToList(tune));
 }
+
+function loadStoredPlaylists() {
+    const currentUser = JSON.parse(localStorage.getItem('user'));
+    if (!currentUser || !currentUser.username) return;
+    
+    const playlistKey = `${currentUser.username}-playlists`;
+    const storedPlaylists = JSON.parse(localStorage.getItem(playlistKey)) || [];
+    
+    storedPlaylists.forEach(playlistName => {
+        createAccordionForPlaylist(playlistName);
+    });
+}
+
+function createAccordionForPlaylist(playlistName) {
+    const newAccordionId = `${playlistName}`;
+
+    const accordionItem = document.createElement('div');
+    accordionItem.classList.add('accordion-item');
+    accordionItem.style.borderTopWidth = "0px";
+
+    const h2 = document.createElement('h2');
+    h2.classList.add('accordion-header');
+
+    const button = document.createElement('button');
+    button.classList.add('accordion-button', 'collapsed');
+    button.setAttribute('data-bs-toggle', 'collapse');
+    button.setAttribute('data-bs-target', `#${newAccordionId}`);
+    button.textContent = playlistName;
+
+    h2.appendChild(button);
+    const someDiv = document.createElement('div');
+    someDiv.classList.add('accordion-collapse', 'collapse');
+    someDiv.id = newAccordionId;
+    someDiv.setAttribute('data-bs-parent', '#accordionExample');
+
+    const someOtherDiv = document.createElement('div');
+    someOtherDiv.classList.add('accordion-body');
+
+    const ul = document.createElement('ul');
+    ul.innerHTML = '<li>Drag Your Tunes Here!</li>';
+    ul.classList.add('accordionListItems');
+
+    someOtherDiv.appendChild(ul);
+    someDiv.appendChild(someOtherDiv);
+    accordionItem.appendChild(someDiv);
+    accordionItem.appendChild(h2);
+    accordionContainer.appendChild(accordionItem);
+
+    listDropEvents(ul);
+}
+
 
 // IFS
 
@@ -258,12 +320,12 @@ function dragStart(event) {
     }
 }
 
-function addDropEventsToList(ul) {
-    ul.addEventListener('dragover', function (event) {
+function listDropEvents(ul) {
+    ul?.addEventListener('dragover', function (event) {
         event.preventDefault();
     });
 
-    ul.addEventListener('drop', function (event) {
+    ul?.addEventListener('drop', function (event) {
         event.preventDefault();
         const droppedData = event.dataTransfer.getData('text/plain');
 
@@ -276,12 +338,12 @@ function addDropEventsToList(ul) {
         newLi.innerHTML = droppedData;
         ul.appendChild(newLi);
     });
-
 }
 
 // CALLS
 
 loadStoredTunes();
+loadStoredPlaylists();
 
 //RANDOM GENRE GENERATOR
 function getRandomGenre() {
