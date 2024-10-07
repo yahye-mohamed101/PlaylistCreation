@@ -139,7 +139,7 @@ function storeTune(tune) {
     const currentUser = JSON.parse(localStorage.getItem('user'));
     if (!currentUser || !currentUser.username) return;
 
-    const userForge = `whoa`; /*`${currentUser.username}`;*/
+    const userForge = `${currentUser.username}Session`;
     let tunes = JSON.parse(sessionStorage.getItem(userForge)) || [];
     tunes.push(tune);
     sessionStorage.setItem(userForge, JSON.stringify(tunes));
@@ -149,7 +149,7 @@ function loadStoredTunes() {
     const currentUser = JSON.parse(localStorage.getItem('user'));
     if (!currentUser || !currentUser.username) return;
 
-    const userForge = `whoa`;
+    const userForge = `${currentUser.username}Session`;
     const tunes = JSON.parse(sessionStorage.getItem(userForge)) || [];
     tunes.forEach(tune => addTuneToList(tune));
 }
